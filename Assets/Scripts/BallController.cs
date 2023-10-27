@@ -23,9 +23,16 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.CompareTag("Wall")) return;
+        //Return if not Player
+        if (collision.collider.gameObject.CompareTag("Wall") ||
+            collision.collider.gameObject.CompareTag("Brick")) return;
 
-        rb.velocity = new Vector3(Random.Range(1f, 1f), 1).normalized * speed;
+        // Return if Collission with Players Bottomside
+        if (collision.collider.transform.position.y > transform.position.y) return;
+
+        float diff = Mathf.Abs(collision.collider.transform.position.x - transform.position.x);
+        float percent = diff / PlayerController.platformLength + 0.5f;
+        rb.velocity = new Vector3(Mathf.Lerp(-1f, 1f, percent), 1).normalized * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

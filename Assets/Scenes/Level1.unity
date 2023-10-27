@@ -265,7 +265,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -9.74}
+  m_Offset: {x: 0, y: -10.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -348,10 +348,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lane (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4063578104397220937, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -408,10 +404,6 @@ PrefabInstance:
     - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_Name
       value: Lane (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063578104397220937, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -470,10 +462,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lane (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4063578104397220937, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -530,10 +518,6 @@ PrefabInstance:
     - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_Name
       value: Lane (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063578104397220937, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -598,7 +582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7636128611010519731, guid: 0a0a6e3d85be19b4fa4531dbf149a7b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 7636128611010519731, guid: 0a0a6e3d85be19b4fa4531dbf149a7b7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -651,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7797464526685713638, guid: c3a21627f87ff3f4fba9064ca2831121, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7797464526685713638, guid: c3a21627f87ff3f4fba9064ca2831121, type: 3}
       propertyPath: m_LocalPosition.z
@@ -705,10 +689,6 @@ PrefabInstance:
     - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_Name
       value: Lane
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799849880935178776, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063578104397220937, guid: d956735d29dbbc14b899e4d8917432d3, type: 3}
       propertyPath: m_LocalPosition.x
