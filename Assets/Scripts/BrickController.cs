@@ -8,7 +8,9 @@ public class BrickController : MonoBehaviour
     //InnerComponent
     private SpriteRenderer sprite;
     //InnerParams
-    private static int activeBricks;
+
+    public static int activeBricks { private set; get; }
+    public static int numberOfBricks { private set; get; }
 
     private void Awake()
     {
@@ -16,6 +18,11 @@ public class BrickController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         Vector3 c = getColor(Random.Range(1, 5));
         sprite.color = new Color(c.x, c.y, c.z, 255);
+    }
+
+    private void Start()
+    {
+        numberOfBricks = activeBricks;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

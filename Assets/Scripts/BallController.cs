@@ -30,7 +30,7 @@ public class BallController : MonoBehaviour
         // Return if Collission with Players Bottomside
         if (collision.collider.transform.position.y > transform.position.y) return;
 
-        float diff = Mathf.Abs(collision.collider.transform.position.x - transform.position.x);
+        float diff = transform.position.x - collision.collider.transform.position.x;
         float percent = diff / PlayerController.platformLength + 0.5f;
         rb.velocity = new Vector3(Mathf.Lerp(-1f, 1f, percent), 1).normalized * speed;
     }
