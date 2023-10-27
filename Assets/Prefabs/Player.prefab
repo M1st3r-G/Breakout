@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAxis: {fileID: -756759010786599959, guid: aa74f2749951a944c90edfa9f0f7763b, type: 3}
-  speed: 5
+  speed: 10

@@ -11,6 +11,8 @@ public class BallController : MonoBehaviour
     // InnerTemps
     private Vector3 startPosition;
 
+    public static int respawnCounter { private set; get; }
+
     // Unity-Awake Methode
     void Awake()
     {
@@ -38,5 +40,6 @@ public class BallController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         transform.position = startPosition;
+        respawnCounter++;
     }
 }
