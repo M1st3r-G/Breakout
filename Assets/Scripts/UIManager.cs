@@ -14,6 +14,10 @@ public class UIManager : MonoBehaviour
         int points = BrickController.numberOfBricks - BrickController.activeBricks;
 
         pointsText.text = points.ToString();
-        lifeText.text = (maxLife - BallController.respawnCounter).ToString();
+        int curLife = maxLife - BallController.respawnCounter;
+        lifeText.text = curLife.ToString();
+
+        if (curLife == 0) return;
+        //End Game
     }
 }

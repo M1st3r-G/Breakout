@@ -34,12 +34,14 @@ public class BallController : MonoBehaviour
 
         float diff = transform.position.x - collision.collider.transform.position.x;
         float percent = diff / PlayerController.platformLength + 0.5f;
-        rb.velocity = new Vector3(Mathf.Lerp(-1f, 1f, percent), 1).normalized * speed;
+        float rDisplacement = Random.Range(-0.1f, 0.1f);
+        rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         transform.position = startPosition;
+        rb.velocity = Vector2.down * rb.velocity.magnitude;
         respawnCounter++;
     }
 }
