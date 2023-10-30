@@ -19,4 +19,9 @@ public class UIInteractions : MonoBehaviour
     {
         SceneManager.LoadScene(2); // Level1
     }
+
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
