@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     private bool AnyBrickActive()
     {
-        foreach(BrickController brick in allBricks)
+        foreach (BrickController brick in allBricks)
         {
             if (brick.gameObject.activeSelf) return true;
         }
