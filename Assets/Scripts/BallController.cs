@@ -21,12 +21,14 @@ public class BallController : MonoBehaviour
     {
         restartAction.action.Enable();
         restartAction.action.performed += ctx => Restart();
+        GameManager.OnGameOver += () => gameObject.SetActive(false);
     }
 
     private void OnDisable()
     {
         restartAction.action.performed -= ctx => Restart();
         restartAction.action.Disable();
+        GameManager.OnGameOver -= () => gameObject.SetActive(false);
     }
 
     // Unity-Awake Methode

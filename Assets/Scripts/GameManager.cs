@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    //OuterComponentRefrences
+    //InnerComponentRefrences
     private TextMeshProUGUI pointsText;
     private TextMeshProUGUI lifeText;
     private BallController ball;
@@ -71,7 +71,11 @@ public class GameManager : MonoBehaviour
     {
         curLife--;
         lifeText.text = curLife.ToString();
-        if (curLife == 0) OnGameOver?.Invoke();
+        if (curLife == 0)
+        {
+            OnGameOver?.Invoke();
+            print("Send Event");
+        }
         else ball.setAbleToRestart();
     }
 
@@ -93,7 +97,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    //TODO Wenn alle Deaktiviert, neue Szene
     /// <summary>
     /// Eine Methode die die Szene am nächsten Index Lädt
     /// </summary>

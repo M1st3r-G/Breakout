@@ -17,6 +17,11 @@ public class UIInteractions : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        StartTheGame();
+    }
+
+    public void StartTheGame()
+    {
         SceneManager.LoadScene(2); // Level1
     }
 
