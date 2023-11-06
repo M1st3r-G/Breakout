@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     private void RefreshRefrences(Scene scene, LoadSceneMode mode)
     {
         // Destroy if in Menu
-        if(scene.buildIndex < 2)
+        if(scene.buildIndex == 0)
         {
             Instance = null;
             Destroy(gameObject);
@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
         if (curLife == 0)
         {
             OnGameOver?.Invoke();
-            print("Send Event");
         }
         else ball.setAbleToRestart();
     }

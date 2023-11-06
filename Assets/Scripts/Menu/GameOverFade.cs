@@ -25,6 +25,7 @@ public class GameOverFade : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
+        group.interactable = true;
         while (group.alpha < 1)
         {
             group.alpha += Time.deltaTime / TimeInSeconds;
