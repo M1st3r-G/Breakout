@@ -6,41 +6,35 @@ public class BrickController : MonoBehaviour
 {
     //InnerComponent
     private SpriteRenderer sprite;
-    //InnerParams
-    private int strenght = 1;
+    //OuterParams
+    [SerializeField] private int strenght = 1;
+    [SerializeField] private Color[] colors;
     //Publics
     public static event System.Action OnHit;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        Vector3 c = getColor(strenght);
-        sprite.color = new Color(c.x, c.y, c.z, 255);
+        SetColor(strenght);
+    }
+    
+    private void SetColor(int value)
+    {
+        value = Mathf.Clamp(value - 1, 0, colors.Length - 1);
+        sprite.color = colors[value];
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        gameObject.SetActive(false);
-        OnHit?.Invoke();
-    }
-
-    /// <summary>
-    /// Eine Methode, die Farben generiert (rgb)
-    /// </summary>
-    /// <param name="pColor">Eine int, die zur Farbe übersetzt wird</param>
-    /// <returns>Ein Vector3 als r, g, b</returns>
-    private Vector3 getColor(int pColor)
-    {
-        switch (pColor)
+        if(strenght >= 2)
         {
-            case 1:
-                return new Vector3(130, 0, 0);
-            case 2:
-                return new Vector3(0, 130, 0 );
-            case 3:
-                return new Vector3(0, 0, 130 );
-            default:
-                return new Vector3(130, 130, 0 );
+            strenght--;
+            SetColor(strenght);
         }
+        else 
+        {
+            gameObject.SetActive(false);
+        }
+        OnHit?.Invoke();
     }
 }

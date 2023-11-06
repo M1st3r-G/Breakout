@@ -11,7 +11,6 @@ public class BallController : MonoBehaviour
     // InnerTemps
     private Vector3 startPosition;
     public static event System.Action OnBallExit;
-    public static int respawnCounter { private set; get; }
 
     // Unity-Awake Methode
     void Awake()
@@ -38,10 +37,9 @@ public class BallController : MonoBehaviour
         rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
     }
 
-    private void Restart()
+    public void Restart()
     {
         transform.position = startPosition;
-        //Starten der Bewegung
         rb.velocity = Vector2.up * speed;
     }
 

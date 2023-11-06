@@ -7,8 +7,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     //OuterComponentRefrences
-    [SerializeField] private TextMeshProUGUI pointsText;
-    [SerializeField] private TextMeshProUGUI lifeText;
+    private TextMeshProUGUI pointsText;
+    private TextMeshProUGUI lifeText;
+    private BallController ball;
     //InnerTemps
     private int curLife;
     private int curPoints = 0;
@@ -16,40 +17,54 @@ public class GameManager : MonoBehaviour
     //Params
     [SerializeField] private int maxLife = 3;
     //Publics
-    public static GameManager instance {get;  private set; }
+    public static GameManager instance { get; private set; }
     public static event System.Action OnGameOver;
 
-    private void Start()
+    private void Awake()
     {
-        if (this != instance)
+        if (instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
             return;
         }
         curLife = maxLife;
         instance = this;
         DontDestroyOnLoad(this);
-        RefreshRefrences();
     }
 
     private void OnEnable()
     {
         BallController.OnBallExit += RemoveLife;
         BrickController.OnHit += AddPoints;
+        SceneManager.sceneLoaded += RefreshRefrences;
     }
 
     private void OnDisable()
     {
         BallController.OnBallExit -= RemoveLife;
         BrickController.OnHit -= AddPoints;
+        SceneManager.sceneLoaded -= RefreshRefrences;
     }
 
-    private void RefreshRefrences()
+    private void RefreshRefrences(Scene scene, LoadSceneMode mode)
     {
+        // Destroy if in Menu
+        if(scene.buildIndex < 2)
+        {
+            instance = null;
+            Destroy(gameObject);
+            return;
+        }
+
+        allBricks = new List<BrickController>();
         foreach (GameObject BrickObject in GameObject.FindGameObjectsWithTag("Brick"))
         {
             allBricks.Add(BrickObject.GetComponent<BrickController>());
         }
+
+        pointsText = GameObject.FindGameObjectWithTag("Points").GetComponent<TextMeshProUGUI>();
+        lifeText = GameObject.FindGameObjectWithTag("Life").GetComponent<TextMeshProUGUI>();
+        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallController>();
     }
 
     private void RemoveLife()
@@ -62,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //Ball.restart();
+            ball.Restart();
         }
     }
 
@@ -70,7 +85,11 @@ public class GameManager : MonoBehaviour
     {
         curPoints++;
         pointsText.text = curPoints.ToString();
-        if (!AnyBrickActive()) LoadNextScene();
+        
+        if (!AnyBrickActive())
+        {
+            LoadNextScene();
+        }
     }
 
     private bool AnyBrickActive()
@@ -101,7 +120,5 @@ public class GameManager : MonoBehaviour
             // Ansonsten zurück zum ersten Index
             SceneManager.LoadScene(0);
         }
-
-        RefreshRefrences();
     }
 }
