@@ -1,16 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class BallController : MonoBehaviour
 {
+    //OuterComponents
+    [SerializeField] private InputActionReference restartAction; 
     // InnerComponents
     private Rigidbody2D rb;
     // OuterParams
-    public float speed;
+    [SerializeField] private float speed;
     // InnerTemps
     private Vector3 startPosition;
     public static event System.Action OnBallExit;
+    private bool ableToRestart = true;
+
+    private void OnEnable()
+    {
+        restartAction.action.Enable();
+        restartAction.action.performed += ctx => Restart();
+    }
+
+    private void OnDisable()
+    {
+        restartAction.action.performed -= ctx => Restart();
+        restartAction.action.Disable();
+    }
 
     // Unity-Awake Methode
     void Awake()
@@ -18,8 +35,6 @@ public class BallController : MonoBehaviour
         // Setzen der InnerComponents
         rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
-        //Starten der Bewegung
-        rb.velocity = Vector2.up * speed;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -39,12 +54,18 @@ public class BallController : MonoBehaviour
 
     public void Restart()
     {
-        transform.position = startPosition;
-        rb.velocity = Vector2.up * speed;
+        if (ableToRestart)
+        {
+            rb.velocity = Vector2.up * speed;
+            ableToRestart = false;
+        }
     }
+
+    public void setAbleToRestart() { ableToRestart = true;}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        transform.position = startPosition;
         rb.velocity = Vector2.zero;
         OnBallExit?.Invoke();
     }

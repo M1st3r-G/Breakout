@@ -71,14 +71,8 @@ public class GameManager : MonoBehaviour
     {
         curLife--;
         lifeText.text = curLife.ToString();
-        if (curLife == 0)
-        {
-            OnGameOver?.Invoke();
-        }
-        else
-        {
-            ball.Restart();
-        }
+        if (curLife == 0) OnGameOver?.Invoke();
+        else ball.setAbleToRestart();
     }
 
     private void AddPoints()
@@ -86,10 +80,7 @@ public class GameManager : MonoBehaviour
         curPoints++;
         pointsText.text = curPoints.ToString();
         
-        if (!AnyBrickActive())
-        {
-            LoadNextScene();
-        }
+        if (!AnyBrickActive()) LoadNextScene();
     }
 
     private bool AnyBrickActive()
