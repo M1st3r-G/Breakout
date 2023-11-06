@@ -17,18 +17,18 @@ public class GameManager : MonoBehaviour
     //Params
     [SerializeField] private int maxLife = 3;
     //Publics
-    public static GameManager instance { get; private set; }
+    public static GameManager Instance { get; private set; }
     public static event System.Action OnGameOver;
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         curLife = maxLife;
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this);
     }
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         // Destroy if in Menu
         if(scene.buildIndex < 2)
         {
-            instance = null;
+            Instance = null;
             Destroy(gameObject);
             return;
         }
@@ -97,9 +97,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// Eine Methode die die Szene am nächsten Index Lädt
-    /// </summary>
     private void LoadNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

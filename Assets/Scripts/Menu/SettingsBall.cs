@@ -26,6 +26,10 @@ public class SettingsBall : MonoBehaviour
 
     public void StartMovement ()
     {
-        if(rb.velocity.magnitude < 0.1f) rb.velocity = (target.transform.position + offset - startPosition).normalized * speed;
+        if (rb.velocity.magnitude < 0.1f)
+        {
+            rb.angularVelocity = 30f;
+            rb.velocity = (target.transform.position + offset - startPosition).normalized * speed;
+        }
     }
 }
