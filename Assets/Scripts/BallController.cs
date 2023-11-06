@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour
     public float speed;
     // InnerTemps
     private Vector3 startPosition;
-
+    public static event System.Action OnBallExit;
     public static int respawnCounter { private set; get; }
 
     // Unity-Awake Methode
@@ -38,10 +38,16 @@ public class BallController : MonoBehaviour
         rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Restart()
     {
         transform.position = startPosition;
-        rb.velocity = Vector2.down * rb.velocity.magnitude;
-        respawnCounter++;
+        //Starten der Bewegung
+        rb.velocity = Vector2.up * speed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        rb.velocity = Vector2.zero;
+        OnBallExit?.Invoke();
     }
 }
