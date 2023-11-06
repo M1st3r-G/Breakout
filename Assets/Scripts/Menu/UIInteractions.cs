@@ -10,11 +10,6 @@ public class UIInteractions : MonoBehaviour
        Application.Quit();
     }
 
-    public void OpenSettings()
-    {
-        SceneManager.LoadScene(1); // Settings
-    }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         StartTheGame();
@@ -22,7 +17,7 @@ public class UIInteractions : MonoBehaviour
 
     public void StartTheGame()
     {
-        SceneManager.LoadScene(2); // Level1
+        SceneManager.LoadScene(1); // Level1
     }
 
     public void OpenMainMenu()
