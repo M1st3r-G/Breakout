@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 108989987}
   - component: {fileID: 108989986}
   - component: {fileID: 108989989}
+  - component: {fileID: 108989990}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: Untagged
@@ -375,8 +376,20 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 150, y: 45}
+  m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
+--- !u!114 &108989990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108989984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3ddeef8f7dfed4b81263c408912d12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &184674883
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +474,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 27.25
   m_fontSizeBase: 24.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -597,7 +610,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.35
+  m_fontSize: 51.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -845,7 +858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 0.097}
-  m_AnchoredPosition: {x: 9.75, y: -8.500061}
+  m_AnchoredPosition: {x: 9.749992, y: -8.500061}
   m_SizeDelta: {x: -19.5, y: -17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &429198679
@@ -895,7 +908,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.45
+  m_fontSize: 32.05
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1121,7 +1134,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.05
+  m_fontSize: 28.05
   m_fontSizeBase: 24.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
