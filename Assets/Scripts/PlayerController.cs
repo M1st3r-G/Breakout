@@ -20,12 +20,17 @@ public class PlayerController : MonoBehaviour
         platformLength = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * speed;
+    }
+    private void OnEnable()
+    {
         moveAxis.action.Enable();
+        PowerUpController.OnPowerUp += AddPowerUp;
     }
 
     private void OnDisable()
     {
         moveAxis.action.Disable();
+        PowerUpController.OnPowerUp -= AddPowerUp;
     }
 
     private void Update()
@@ -36,5 +41,18 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = moveValue * speed * Vector2.right;
+    }
+
+    private void AddPowerUp(PowerUpController.PowerUpTypes type)
+    {
+        switch (type)
+        {
+            case PowerUpController.PowerUpTypes.ExtraBall:
+                {
+                    GameManager.Instance.AddBall();
+                    break;
+                }
+            default: break;
+        }
     }
 }

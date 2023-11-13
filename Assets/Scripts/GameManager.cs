@@ -6,14 +6,16 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    //OuterComponentRefrences
+    [SerializeField] private GameObject Ball;
     //InnerComponentRefrences
     private TextMeshProUGUI pointsText;
     private TextMeshProUGUI lifeText;
-    private BallController ball;
     //InnerTemps
     private int curLife;
     private int curPoints = 0;
     private List<BrickController> allBricks;
+    private List<BallController> allBalls;
     //Params
     [SerializeField] private int maxLife = 3;
     //Publics
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         }
         curLife = maxLife;
         Instance = this;
+        allBalls = new List<BallController>();
         DontDestroyOnLoad(this);
     }
 
@@ -63,19 +66,28 @@ public class GameManager : MonoBehaviour
         }
 
         pointsText = GameObject.FindGameObjectWithTag("Points").GetComponent<TextMeshProUGUI>();
+        pointsText.text = curPoints.ToString();
         lifeText = GameObject.FindGameObjectWithTag("Life").GetComponent<TextMeshProUGUI>();
-        ball = GameObject.FindGameObjectWithTag("Ball").GetComponent<BallController>();
+        lifeText.text = curLife.ToString();
+        allBalls = new List<BallController>();
+        AddBall(true);
     }
 
-    private void RemoveLife()
+    private void RemoveLife(BallController ball)
     {
-        curLife--;
-        lifeText.text = curLife.ToString();
-        if (curLife == 0)
+        allBalls.Remove(ball);
+        Destroy(ball.gameObject);
+        
+        if(allBalls.Count == 0)
         {
-            OnGameOver?.Invoke();
+            curLife--;
+            lifeText.text = curLife.ToString();
+            if (curLife == 0)
+            {
+                OnGameOver?.Invoke();
+            }
+            else AddBall(true);
         }
-        else ball.setAbleToRestart();
     }
 
     private void AddPoints(GameObject HitBrick)
@@ -110,5 +122,13 @@ public class GameManager : MonoBehaviour
             // Ansonsten zurück zum ersten Index
             SceneManager.LoadScene(0);
         }
+    }
+
+    public void AddBall(bool first = false)
+    {
+        print(first);
+        BallController newBall = Instantiate(Ball, 8*Vector3.down, Quaternion.identity).GetComponent<BallController>();
+        if (!first) newBall.Restart();
+        allBalls.Add(newBall);
     }
 }

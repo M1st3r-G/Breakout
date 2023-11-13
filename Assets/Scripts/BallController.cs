@@ -13,9 +13,10 @@ public class BallController : MonoBehaviour
     // OuterParams
     [SerializeField] private float speed;
     // InnerTemps
-    private Vector3 startPosition;
-    public static event System.Action OnBallExit;
     private bool ableToRestart = true;
+    //Publics
+    public delegate void OnBallExitDelegate(BallController bc);
+    public static event OnBallExitDelegate OnBallExit;
 
     private void OnEnable()
     {
@@ -36,7 +37,6 @@ public class BallController : MonoBehaviour
     {
         // Setzen der InnerComponents
         rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -63,12 +63,10 @@ public class BallController : MonoBehaviour
         }
     }
 
-    public void setAbleToRestart() { ableToRestart = true;}
+    public void SetAbleToRestart() { ableToRestart = true;}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.position = startPosition;
-        rb.velocity = Vector2.zero;
-        OnBallExit?.Invoke();
+        OnBallExit?.Invoke(this);
     }
 }

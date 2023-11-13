@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef87ed3d4a13b7949845f2150a75b178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Ball: {fileID: 8546376401674402375, guid: c3a21627f87ff3f4fba9064ca2831121, type: 3}
   maxLife: 3
 --- !u!114 &1792237639402408894
 MonoBehaviour:
