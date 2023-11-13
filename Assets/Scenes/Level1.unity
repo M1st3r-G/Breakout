@@ -934,6 +934,10 @@ PrefabInstance:
       propertyPath: m_fontSize
       value: 39.95
       objectReference: {fileID: 0}
+    - target: {fileID: 2696810618352860242, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50.000008
+      objectReference: {fileID: 0}
     - target: {fileID: 4111511301940109970, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_Name
       value: CanvasSystem

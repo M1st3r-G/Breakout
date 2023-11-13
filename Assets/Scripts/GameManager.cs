@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
         else ball.setAbleToRestart();
     }
 
-    private void AddPoints()
+    private void AddPoints(GameObject HitBrick)
     {
         curPoints++;
         pointsText.text = curPoints.ToString();

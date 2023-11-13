@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BrickController : MonoBehaviour
@@ -10,7 +11,7 @@ public class BrickController : MonoBehaviour
     [SerializeField] private int strenght = 1;
     [SerializeField] private Color[] colors;
     //Publics
-    public static event System.Action OnHit;
+    public static event System.Action<GameObject> OnHit;
 
     private void Awake()
     {
@@ -35,6 +36,6 @@ public class BrickController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        OnHit?.Invoke();
+        OnHit?.Invoke(gameObject);
     }
 }

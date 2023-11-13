@@ -834,16 +834,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2696810618352860242, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -49.999992
+      objectReference: {fileID: 0}
     - target: {fileID: 4111511301940109970, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_Name
       value: CanvasSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013502321434028171, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 49.999992
       objectReference: {fileID: 0}
     - target: {fileID: 7976344637739680899, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3741048678604313517, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8740902015950163632, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       insertIndex: -1
