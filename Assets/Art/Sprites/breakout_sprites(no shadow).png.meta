@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,7 +115,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 368
-        width: 34
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -136,7 +136,7 @@ TextureImporter:
         serializedVersion: 2
         x: 40
         y: 368
-        width: 34
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -176,10 +176,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_3
       rect:
         serializedVersion: 2
-        x: 121
-        y: 369
-        width: 30
-        height: 30
+        x: 120
+        y: 368
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_4
       rect:
         serializedVersion: 2
-        x: 159
-        y: 367
-        width: 33
-        height: 33
+        x: 160
+        y: 368
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,10 +218,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_5
       rect:
         serializedVersion: 2
-        x: 201
-        y: 369
-        width: 30
-        height: 30
+        x: 200
+        y: 368
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,7 +241,7 @@ TextureImporter:
         serializedVersion: 2
         x: 240
         y: 368
-        width: 34
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -281,10 +281,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_8
       rect:
         serializedVersion: 2
-        x: 319
-        y: 367
-        width: 33
-        height: 33
+        x: 320
+        y: 368
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,9 +302,9 @@ TextureImporter:
       name: breakout_sprites(no shadow)_9
       rect:
         serializedVersion: 2
-        x: 359
+        x: 360
         y: 368
-        width: 36
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -344,9 +344,9 @@ TextureImporter:
       name: breakout_sprites(no shadow)_11
       rect:
         serializedVersion: 2
-        x: 39
+        x: 40
         y: 328
-        width: 33
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -428,9 +428,9 @@ TextureImporter:
       name: breakout_sprites(no shadow)_15
       rect:
         serializedVersion: 2
-        x: 199
+        x: 200
         y: 328
-        width: 33
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -449,9 +449,9 @@ TextureImporter:
       name: breakout_sprites(no shadow)_16
       rect:
         serializedVersion: 2
-        x: 239
+        x: 240
         y: 328
-        width: 33
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -473,7 +473,7 @@ TextureImporter:
         x: 280
         y: 328
         width: 32
-        height: 33
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,7 +536,7 @@ TextureImporter:
         x: 0
         y: 288
         width: 32
-        height: 33
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -578,7 +578,7 @@ TextureImporter:
         x: 80
         y: 288
         width: 32
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -596,10 +596,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_23
       rect:
         serializedVersion: 2
-        x: 121
-        y: 289
-        width: 29
-        height: 30
+        x: 120
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -619,8 +619,8 @@ TextureImporter:
         serializedVersion: 2
         x: 160
         y: 288
-        width: 31
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -659,9 +659,9 @@ TextureImporter:
       name: breakout_sprites(no shadow)_26
       rect:
         serializedVersion: 2
-        x: 239
+        x: 240
         y: 288
-        width: 33
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -680,10 +680,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_27
       rect:
         serializedVersion: 2
-        x: 281
+        x: 280
         y: 288
-        width: 30
-        height: 31
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -702,9 +702,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 289
-        width: 31
-        height: 31
+        y: 288
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -722,9 +722,9 @@ TextureImporter:
       name: breakout_sprites(no shadow)_29
       rect:
         serializedVersion: 2
-        x: 359
+        x: 360
         y: 288
-        width: 33
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -743,10 +743,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_31
       rect:
         serializedVersion: 2
-        x: 159
+        x: 160
         y: 248
-        width: 33
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -765,9 +765,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 249
+        y: 248
         width: 32
-        height: 31
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -785,10 +785,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_33
       rect:
         serializedVersion: 2
-        x: 39
+        x: 40
         y: 248
-        width: 33
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -806,10 +806,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_34
       rect:
         serializedVersion: 2
-        x: 79
-        y: 246
-        width: 35
-        height: 35
+        x: 80
+        y: 248
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -828,9 +828,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 120
-        y: 246
-        width: 33
-        height: 34
+        y: 248
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -851,7 +851,7 @@ TextureImporter:
         x: 200
         y: 248
         width: 32
-        height: 33
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -870,9 +870,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 247
-        width: 33
-        height: 34
+        y: 248
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -890,10 +890,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_38
       rect:
         serializedVersion: 2
-        x: 279
+        x: 280
         y: 248
-        width: 33
-        height: 33
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -911,10 +911,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_40
       rect:
         serializedVersion: 2
-        x: 319
-        y: 247
-        width: 34
-        height: 34
+        x: 320
+        y: 248
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -932,10 +932,10 @@ TextureImporter:
       name: breakout_sprites(no shadow)_41
       rect:
         serializedVersion: 2
-        x: 359
+        x: 360
         y: 248
-        width: 33
-        height: 33
+        width: 30
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1039,7 +1039,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 175
-        width: 97
+        width: 96
         height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -1122,9 +1122,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
-        width: 129
-        height: 24
+        y: 95
+        width: 128
+        height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1483,7 +1483,7 @@ TextureImporter:
         width: 24
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1504,7 +1504,7 @@ TextureImporter:
         width: 24
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

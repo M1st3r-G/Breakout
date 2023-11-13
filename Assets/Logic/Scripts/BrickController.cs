@@ -8,21 +8,16 @@ public class BrickController : MonoBehaviour
     //InnerComponent
     private SpriteRenderer sprite;
     //OuterParams
-    [SerializeField] private int strenght = 1;
-    [SerializeField] private Color[] colors;
+    [SerializeField] private Sprite[] sprites;
+    [SerializeField, Range(1,5)] private int strenght = 1;
     //Publics
-    public static event System.Action<GameObject> OnHit;
+    public delegate void OnHitDelegate(GameObject BrickHit);
+    public static event OnHitDelegate OnHit;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        SetColor(strenght);
-    }
-    
-    private void SetColor(int value)
-    {
-        value = Mathf.Clamp(value - 1, 0, colors.Length - 1);
-        sprite.color = colors[value];
+        sprite.sprite = sprites[strenght-1];
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -30,7 +25,7 @@ public class BrickController : MonoBehaviour
         if(strenght >= 2)
         {
             strenght--;
-            SetColor(strenght);
+            sprite.sprite = sprites[strenght-1];
         }
         else 
         {

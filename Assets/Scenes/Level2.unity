@@ -200,15 +200,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Some Blocks Are stronger.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 75f3f14046311f24d8fb49703a40d241, type: 2}
-  m_sharedMaterial: {fileID: -4814173615986181539, guid: 75f3f14046311f24d8fb49703a40d241, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 284c760b431231847bb064cfe1db25d6, type: 2}
+  m_sharedMaterial: {fileID: 976156286982586704, guid: 284c760b431231847bb064cfe1db25d6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190126
-  m_fontColor: {r: 0.1792453, g: 0, b: 0, a: 1}
+    rgba: 4289309097
+  m_fontColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -225,13 +225,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.8
+  m_fontSize: 24.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
