@@ -13,13 +13,17 @@ public class GameOverFade : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnGameOver += () => StartCoroutine(FadeIn());
+        GameManager.OnGameOver += OnGameOver;
     }
 
+    private void OnGameOver()
+    {
+        StartCoroutine(FadeIn());
+    }
+    
     private void OnDisable()
     {
-        GameManager.OnGameOver -= () => StartCoroutine(FadeIn());
-
+        GameManager.OnGameOver -= OnGameOver;
     }
 
     private IEnumerator FadeIn()

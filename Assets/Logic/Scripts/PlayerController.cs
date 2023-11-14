@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
         switch (powerUp)
         {
             case PowerUpController.PowerUpTypes.ExtraBall:
+                GameManager.Instance.AddBall();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(powerUp), powerUp, null);

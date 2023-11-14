@@ -19,15 +19,20 @@ public class BallController : MonoBehaviour
     private void OnEnable()
     {
         restartAction.action.Enable();
-        restartAction.action.performed += ctx => Restart();
-        GameManager.OnGameOver += () => gameObject.SetActive(false);
+        restartAction.action.performed += OnRestart;
+        GameManager.OnGameOver += OnGameOver;
     }
 
+    private void OnGameOver()
+    {
+        gameObject.SetActive(false);
+    }
+    
     private void OnDisable()
     {
-        restartAction.action.performed -= ctx => Restart();
+        restartAction.action.performed -= OnRestart;
         restartAction.action.Disable();
-        GameManager.OnGameOver -= () => gameObject.SetActive(false);
+        GameManager.OnGameOver -= OnGameOver;
     }
 
     // Unity-Awake Methode
@@ -52,6 +57,11 @@ public class BallController : MonoBehaviour
         rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
     }
 
+    private void OnRestart(InputAction.CallbackContext ctx)
+    {
+        Restart();
+    }
+    
     public void Restart()
     {
         if (!ableToRestart) return;

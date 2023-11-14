@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -108,7 +109,7 @@ public class GameManager : MonoBehaviour
             currentSceneIndex < SceneManager.sceneCountInBuildSettings ? currentSceneIndex : 0);
     }
 
-    private void AddBall(bool first = false)
+    public void AddBall(bool first = false)
     {
         BallController newBall = Instantiate(ball, 8*Vector3.down, Quaternion.identity).GetComponent<BallController>();
         if (!first) newBall.Restart();

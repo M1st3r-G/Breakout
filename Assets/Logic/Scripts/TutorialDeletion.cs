@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,12 +8,17 @@ public class TutorialDeletion : MonoBehaviour
     private void OnEnable()
     {
         destroy.action.Enable();
-        destroy.action.performed += ctx => Destroy(gameObject);
+        destroy.action.performed += OnDestroyAction;
     }
-
+    
     private void OnDisable()
     {
-        destroy.action.performed -= ctx => Destroy(gameObject);
+        destroy.action.performed -= OnDestroyAction;
         destroy.action.Disable();
+    }
+    
+    private void OnDestroyAction(InputAction.CallbackContext ctx)
+    {
+        Destroy(gameObject);
     }
 }
