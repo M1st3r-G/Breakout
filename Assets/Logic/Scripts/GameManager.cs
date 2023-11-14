@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    //OuterComponentRefrences
-    [SerializeField] private GameObject Ball;
-    //InnerComponentRefrences
+    //OuterComponentReferences
+    [SerializeField] private GameObject ball;
+    //InnerComponentReferences
     private TextMeshProUGUI pointsText;
     private TextMeshProUGUI lifeText;
     //InnerTemps
@@ -39,17 +39,17 @@ public class GameManager : MonoBehaviour
     {
         BallController.OnBallExit += RemoveLife;
         BrickController.OnHit += AddPoints;
-        SceneManager.sceneLoaded += RefreshRefrences;
+        SceneManager.sceneLoaded += RefreshReferences;
     }
 
     private void OnDisable()
     {
         BallController.OnBallExit -= RemoveLife;
         BrickController.OnHit -= AddPoints;
-        SceneManager.sceneLoaded -= RefreshRefrences;
+        SceneManager.sceneLoaded -= RefreshReferences;
     }
 
-    private void RefreshRefrences(Scene scene, LoadSceneMode mode)
+    private void RefreshReferences(Scene scene, LoadSceneMode mode)
     {
         // Destroy if in Menu
         if(scene.buildIndex == 0)
@@ -60,9 +60,9 @@ public class GameManager : MonoBehaviour
         }
 
         allBricks = new List<BrickController>();
-        foreach (GameObject BrickObject in GameObject.FindGameObjectsWithTag("Brick"))
+        foreach (GameObject brickObject in GameObject.FindGameObjectsWithTag("Brick"))
         {
-            allBricks.Add(BrickObject.GetComponent<BrickController>());
+            allBricks.Add(brickObject.GetComponent<BrickController>());
         }
 
         pointsText = GameObject.FindGameObjectWithTag("Points").GetComponent<TextMeshProUGUI>();
@@ -73,24 +73,19 @@ public class GameManager : MonoBehaviour
         AddBall(true);
     }
 
-    private void RemoveLife(BallController ball)
+    private void RemoveLife(BallController pBall)
     {
-        allBalls.Remove(ball);
-        Destroy(ball.gameObject);
-        
-        if(allBalls.Count == 0)
-        {
-            curLife--;
-            lifeText.text = curLife.ToString();
-            if (curLife == 0)
-            {
-                OnGameOver?.Invoke();
-            }
-            else AddBall(true);
-        }
+        allBalls.Remove(pBall);
+        Destroy(pBall.gameObject);
+
+        if (allBalls.Count != 0) return;
+        curLife--;
+        lifeText.text = curLife.ToString();
+        if (curLife == 0) OnGameOver?.Invoke();
+        else AddBall(true);
     }
 
-    private void AddPoints(GameObject HitBrick)
+    private void AddPoints(GameObject hitBrick)
     {
         curPoints++;
         pointsText.text = curPoints.ToString();
@@ -100,34 +95,22 @@ public class GameManager : MonoBehaviour
 
     private bool AnyBrickActive()
     {
-        foreach (BrickController brick in allBricks)
-        {
-            if (brick.gameObject.activeSelf) return true;
-        }
-        return false;
+        return allBricks.Any(brick => brick.gameObject.activeSelf);
     }
 
 
-    private void LoadNextScene()
+    private static void LoadNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         currentSceneIndex++;
-        // Wenn der Index existiert
-        if (currentSceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            SceneManager.LoadScene(currentSceneIndex);
-        }
-        else
-        {
-            // Ansonsten zurück zum ersten Index
-            SceneManager.LoadScene(0);
-        }
+        // Wenn der Index existiert, ansonsten zurÃ¼ck zum ersten Index
+        SceneManager.LoadScene(
+            currentSceneIndex < SceneManager.sceneCountInBuildSettings ? currentSceneIndex : 0);
     }
 
-    public void AddBall(bool first = false)
+    private void AddBall(bool first = false)
     {
-        print(first);
-        BallController newBall = Instantiate(Ball, 8*Vector3.down, Quaternion.identity).GetComponent<BallController>();
+        BallController newBall = Instantiate(ball, 8*Vector3.down, Quaternion.identity).GetComponent<BallController>();
         if (!first) newBall.Restart();
         allBalls.Add(newBall);
     }

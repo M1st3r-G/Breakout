@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -17,7 +15,6 @@ public class PowerUpController : MonoBehaviour
         type = (PowerUpTypes)UnityEngine.Random.Range(0, 
             Enum.GetNames(typeof(PowerUpTypes)).Length);
         // TODO: Indicate Type
-        //print(type);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

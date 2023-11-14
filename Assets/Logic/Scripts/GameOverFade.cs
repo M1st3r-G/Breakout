@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameOverFade : MonoBehaviour
 {
     private CanvasGroup group;
-    [SerializeField] float TimeInSeconds;
+    [SerializeField] private float timeInSeconds;
 
     private void Awake()
     {
@@ -28,7 +27,7 @@ public class GameOverFade : MonoBehaviour
         group.interactable = true;
         while (group.alpha < 1)
         {
-            group.alpha += Time.deltaTime / TimeInSeconds;
+            group.alpha += Time.deltaTime / timeInSeconds;
             yield return null;
         }
     }

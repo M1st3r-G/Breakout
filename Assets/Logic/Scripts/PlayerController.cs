@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,11 +12,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     //Temps
     private float moveValue;
-    public static float platformLength;
+    public static float PlatformLength;
 
     private void Awake()
     {
-        platformLength = transform.localScale.x;
+        PlatformLength = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * speed;
     }
@@ -43,16 +42,14 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveValue * speed * Vector2.right;
     }
 
-    private void AddPowerUp(PowerUpController.PowerUpTypes type)
+    private static void AddPowerUp(PowerUpController.PowerUpTypes powerUp)
     {
-        switch (type)
+        switch (powerUp)
         {
             case PowerUpController.PowerUpTypes.ExtraBall:
-                {
-                    GameManager.Instance.AddBall();
-                    break;
-                }
-            default: break;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(powerUp), powerUp, null);
         }
     }
 }

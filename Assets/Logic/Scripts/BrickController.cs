@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class BrickController : MonoBehaviour
 {
@@ -9,28 +7,25 @@ public class BrickController : MonoBehaviour
     private SpriteRenderer sprite;
     //OuterParams
     [SerializeField] private Sprite[] sprites;
-    [SerializeField, Range(1,5)] private int strenght = 1;
+    [SerializeField, Range(1,5)] private int strength = 1;
     //Publics
-    public delegate void OnHitDelegate(GameObject BrickHit);
+    public delegate void OnHitDelegate(GameObject brickHit);
     public static event OnHitDelegate OnHit;
 
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
-        sprite.sprite = sprites[strenght-1];
+        sprite.sprite = sprites[strength-1];
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(strenght >= 2)
+        if(strength >= 2)
         {
-            strenght--;
-            sprite.sprite = sprites[strenght-1];
+            strength--;
+            sprite.sprite = sprites[strength-1];
         }
-        else 
-        {
-            gameObject.SetActive(false);
-        }
+        else gameObject.SetActive(false);
         OnHit?.Invoke(gameObject);
     }
 }

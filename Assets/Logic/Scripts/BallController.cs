@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,7 +31,7 @@ public class BallController : MonoBehaviour
     }
 
     // Unity-Awake Methode
-    void Awake()
+    private void Awake()
     {
         // Setzen der InnerComponents
         rb = GetComponent<Rigidbody2D>();
@@ -45,22 +43,20 @@ public class BallController : MonoBehaviour
         if (collision.collider.gameObject.CompareTag("Wall") ||
             collision.collider.gameObject.CompareTag("Brick")) return;
 
-        // Return if Collission with Players Bottomside
+        // Return if Collision with Players bottom
         if (collision.collider.transform.position.y > transform.position.y) return;
 
         float diff = transform.position.x - collision.collider.transform.position.x;
-        float percent = diff / PlayerController.platformLength + 0.5f;
+        float percent = diff / PlayerController.PlatformLength + 0.5f;
         float rDisplacement = Random.Range(-0.1f, 0.1f);
         rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
     }
 
     public void Restart()
     {
-        if (ableToRestart)
-        {
-            rb.velocity = Vector2.up * speed;
-            ableToRestart = false;
-        }
+        if (!ableToRestart) return;
+        rb.velocity = Vector2.up * speed;
+        ableToRestart = false;
     }
 
     public void SetAbleToRestart() { ableToRestart = true;}

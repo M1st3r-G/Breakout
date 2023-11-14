@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerUpSpawner: MonoBehaviour
@@ -17,11 +15,11 @@ public class PowerUpSpawner: MonoBehaviour
         BrickController.OnHit -= SpawnItem;
     }
 
-    private void SpawnItem(GameObject HitBrick)
+    private void SpawnItem(GameObject hitBrick)
     {
         if(Random.Range(0f,1f) <= percent)
         {
-            Instantiate(powerUp, HitBrick.transform.position, HitBrick.transform.rotation);
+            Instantiate(powerUp, hitBrick.transform.position, hitBrick.transform.rotation);
         }
     }
 }
