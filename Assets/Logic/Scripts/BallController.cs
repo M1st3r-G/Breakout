@@ -60,8 +60,9 @@ public class BallController : MonoBehaviour
                 break;
             case "Brick":
                 // If no BrickController -> Unbreakable
+                print($"brick: {collision.collider.gameObject.GetComponent<BrickController>() != null}");
                 GameManager.Instance.PlayAudioEffect(
-                    collision.collider.gameObject.GetComponent<BrickController>() != null? 0: 2);
+                    collision.collider.gameObject.GetComponent<BrickController>() != null ? 0: 2);
                 break;
         }
     }
