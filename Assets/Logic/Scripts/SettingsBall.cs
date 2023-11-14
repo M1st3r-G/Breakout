@@ -2,13 +2,12 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class SettingsBall : MonoBehaviour
 {
     //OuterComponents
-    [SerializeField]
-    private GameObject target;
-    [SerializeField]
-    private Vector3 offset;
+    [SerializeField] private GameObject target;
+    [SerializeField] private Vector3 offset;
     // InnerComponents
     private Rigidbody2D rb;
     // OuterParams
@@ -19,7 +18,7 @@ public class SettingsBall : MonoBehaviour
     // Unity-Awake Methode
     private void Awake()
     {
-        // Setzen der InnerComponents
+        // Set InnerComponents
         rb = GetComponent<Rigidbody2D>();
         startPosition = transform.position;
     }

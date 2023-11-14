@@ -3,15 +3,18 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
     //OuterComponentReferences
     [SerializeField] private GameObject ball;
-    //InnerComponentReferences
+    [SerializeField] private GameObject[] powerUp;
+    [SerializeField] private AudioClip[] clips;
+    private AudioSource audioSource;
     private TextMeshProUGUI pointsText;
     private TextMeshProUGUI lifeText;
+    private PlayerController player;
     //InnerTemps
     private int curLife;
     private int curPoints = 0;
@@ -19,6 +22,7 @@ public class GameManager : MonoBehaviour
     private List<BallController> allBalls;
     //Params
     [SerializeField] private int maxLife = 3;
+    [SerializeField, Range(0f,1f)] private float percent;
     //Publics
     public static GameManager Instance { get; private set; }
     public static event System.Action OnGameOver;
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
         }
         curLife = maxLife;
         Instance = this;
+        audioSource = GetComponent<AudioSource>();
         allBalls = new List<BallController>();
         DontDestroyOnLoad(this);
     }
@@ -40,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         BallController.OnBallExit += RemoveLife;
         BrickController.OnHit += AddPoints;
+        BrickController.OnHit += SpawnItem;
         SceneManager.sceneLoaded += RefreshReferences;
     }
 
@@ -47,6 +53,7 @@ public class GameManager : MonoBehaviour
     {
         BallController.OnBallExit -= RemoveLife;
         BrickController.OnHit -= AddPoints;
+        BrickController.OnHit -= SpawnItem;
         SceneManager.sceneLoaded -= RefreshReferences;
     }
 
@@ -60,6 +67,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
         allBricks = new List<BrickController>();
         foreach (GameObject brickObject in GameObject.FindGameObjectsWithTag("Brick"))
         {
@@ -70,6 +79,7 @@ public class GameManager : MonoBehaviour
         pointsText.text = curPoints.ToString();
         lifeText = GameObject.FindGameObjectWithTag("Life").GetComponent<TextMeshProUGUI>();
         lifeText.text = curLife.ToString();
+        
         allBalls = new List<BallController>();
         AddBall(true);
     }
@@ -99,20 +109,40 @@ public class GameManager : MonoBehaviour
         return allBricks.Any(brick => brick.gameObject.activeSelf);
     }
 
-
     private static void LoadNextScene()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         currentSceneIndex++;
-        // Wenn der Index existiert, ansonsten zurück zum ersten Index
+        // if indexExists, else MainMenu
         SceneManager.LoadScene(
             currentSceneIndex < SceneManager.sceneCountInBuildSettings ? currentSceneIndex : 0);
     }
 
     public void AddBall(bool first = false)
     {
-        BallController newBall = Instantiate(ball, 8*Vector3.down, Quaternion.identity).GetComponent<BallController>();
-        if (!first) newBall.Restart();
+        BallController newBall = Instantiate(ball, player.transform.position + Vector3.up, Quaternion.identity)
+            .GetComponent<BallController>();
+        if (first)
+        {
+            newBall.transform.SetParent(player.transform);
+            player.StartDrag();
+        }
+        else newBall.Restart();
         allBalls.Add(newBall);
+    }
+
+    private void SpawnItem(GameObject hitBrick)
+    {
+        if(Random.Range(0f,1f) <= percent)
+        {
+            Instantiate(powerUp[Random.Range(0,powerUp.Length)], 
+                hitBrick.transform.position, 
+                hitBrick.transform.rotation);
+        }
+    }
+
+    public void PlayAudioEffect(int index)
+    {
+        if(0 <= index && index < clips.Length) audioSource.PlayOneShot(clips[index]);
     }
 }

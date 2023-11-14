@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+[RequireComponent(typeof(Rigidbody2D))]
 public class BallController : MonoBehaviour
 {
     //OuterComponents
@@ -38,23 +38,32 @@ public class BallController : MonoBehaviour
     // Unity-Awake Methode
     private void Awake()
     {
-        // Setzen der InnerComponents
+        // Set InnerComponents
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //Return if not Player
-        if (collision.collider.gameObject.CompareTag("Wall") ||
-            collision.collider.gameObject.CompareTag("Brick")) return;
-
-        // Return if Collision with Players bottom
-        if (collision.collider.transform.position.y > transform.position.y) return;
-
-        float diff = transform.position.x - collision.collider.transform.position.x;
-        float percent = diff / PlayerController.PlatformLength + 0.5f;
-        float rDisplacement = Random.Range(-0.1f, 0.1f);
-        rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
+        switch (collision.collider.gameObject.tag)
+        {
+            case "Player":
+                if (collision.collider.transform.position.y > transform.position.y) return;
+                
+                GameManager.Instance.PlayAudioEffect(4);
+                float diff = transform.position.x - collision.collider.transform.position.x;
+                float percent = diff / PlayerController.PlatformLength + 0.5f;
+                float rDisplacement = Random.Range(-0.1f, 0.1f);
+                rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
+                break;
+            case "Wall":
+                GameManager.Instance.PlayAudioEffect(1);
+                break;
+            case "Brick":
+                // If no BrickController -> Unbreakable
+                GameManager.Instance.PlayAudioEffect(
+                    collision.collider.gameObject.GetComponent<BrickController>() != null? 0: 2);
+                break;
+        }
     }
 
     private void OnRestart(InputAction.CallbackContext ctx)
@@ -65,6 +74,7 @@ public class BallController : MonoBehaviour
     public void Restart()
     {
         if (!ableToRestart) return;
+        transform.parent = null;
         rb.velocity = Vector2.up * speed;
         ableToRestart = false;
     }

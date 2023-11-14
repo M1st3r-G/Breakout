@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     //OuterComponents
@@ -32,14 +35,24 @@ public class PlayerController : MonoBehaviour
         PowerUpController.OnPowerUp -= AddPowerUp;
     }
 
-    private void Update()
-    {
-        moveValue = moveAxis.action.ReadValue<float>();
-    }
-
     private void FixedUpdate()
     {
-        rb.velocity = moveValue * speed * Vector2.right;
+        rb.velocity =  moveAxis.action.ReadValue<float>() * speed * Vector2.right;
+    }
+
+    private IEnumerator DragAlong()
+    {
+        while (transform.childCount>0)
+        {
+            transform.GetChild(0).localPosition = new Vector3(0f, 1f, 0f);
+            yield return null;
+        }
+        yield return null;
+    }
+
+    public void StartDrag()
+    {
+        StartCoroutine(nameof(DragAlong));
     }
 
     private static void AddPowerUp(PowerUpController.PowerUpTypes powerUp)

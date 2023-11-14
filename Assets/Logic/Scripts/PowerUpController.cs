@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
+    //Temps
+    private PowerUpTypes type;
+    //Publics
     public enum PowerUpTypes { ExtraBall }
-    
     public delegate void OnPowerUpDelegate(PowerUpTypes addedPowerUp);
     public static event OnPowerUpDelegate OnPowerUp;
 
-    private PowerUpTypes type;
     private void Awake()
     {
         type = (PowerUpTypes)UnityEngine.Random.Range(0, 
@@ -21,6 +22,7 @@ public class PowerUpController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            GameManager.Instance.PlayAudioEffect(3);
             OnPowerUp?.Invoke(type);
         }
         Destroy(gameObject);

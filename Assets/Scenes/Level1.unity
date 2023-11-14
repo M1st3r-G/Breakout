@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856ee85bb2e35fc458f6c0907bbce2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: {fileID: -8209589194934715247, guid: aa74f2749951a944c90edfa9f0f7763b, type: 3}
 --- !u!114 &131827119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856ee85bb2e35fc458f6c0907bbce2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroy: {fileID: -8209589194934715247, guid: aa74f2749951a944c90edfa9f0f7763b, type: 3}
 --- !u!114 &1417160729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -879,7 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2696810618352860242, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -50
+      value: -50.000008
       objectReference: {fileID: 0}
     - target: {fileID: 4111511301940109970, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_Name
@@ -891,7 +893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6013502321434028171, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 49.999985
+      value: 49.999992
       objectReference: {fileID: 0}
     - target: {fileID: 7976344637739680899, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_Camera

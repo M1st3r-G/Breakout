@@ -1,9 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class GameOverFade : MonoBehaviour
 {
+    //InnerComponentReference
     private CanvasGroup group;
+    //Params
     [SerializeField] private float timeInSeconds;
 
     private void Awake()

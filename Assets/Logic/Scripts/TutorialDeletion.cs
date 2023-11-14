@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 
 public class TutorialDeletion : MonoBehaviour
 {
+    //OuterComponentReference
     [SerializeField] private InputActionReference destroy;
+    
     private void OnEnable()
     {
         destroy.action.Enable();
