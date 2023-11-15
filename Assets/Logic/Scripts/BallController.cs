@@ -73,6 +73,11 @@ public class BallController : MonoBehaviour
     {
         transform.parent = null;
         rb.velocity = Vector2.up * speed;
+        
+        // Needed to Only start the Ball Once
+        // TODO Test this.
+        restartAction.action.performed -= OnRestart;
+        restartAction.action.Disable();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
