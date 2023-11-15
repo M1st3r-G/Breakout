@@ -10,8 +10,6 @@ public class BallController : MonoBehaviour
     private Rigidbody2D rb;
     // OuterParams
     [SerializeField] private float speed;
-    // InnerTemps
-    private bool ableToRestart = true;
     //Publics
     public delegate void OnBallExitDelegate(BallController bc);
     public static event OnBallExitDelegate OnBallExit;
@@ -60,7 +58,6 @@ public class BallController : MonoBehaviour
                 break;
             case "Brick":
                 // If no BrickController -> Unbreakable
-                print($"brick: {collision.collider.gameObject.GetComponent<BrickController>() != null}");
                 GameManager.Instance.PlayAudioEffect(
                     collision.collider.gameObject.GetComponent<BrickController>() != null ? 0: 2);
                 break;
@@ -74,13 +71,9 @@ public class BallController : MonoBehaviour
     
     public void Restart()
     {
-        if (!ableToRestart) return;
         transform.parent = null;
         rb.velocity = Vector2.up * speed;
-        ableToRestart = false;
     }
-
-    public void SetAbleToRestart() { ableToRestart = true;}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
