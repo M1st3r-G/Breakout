@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,13 +13,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     //OuterParams
     [SerializeField] private float speed;
+    [SerializeField] private float sizeMod;
+    [SerializeField] private float shrinkSpeed;
     //Temps
     private float moveValue;
-    public static float PlatformLength;
+    private float targetSize;
+    private Coroutine sizeControl;
+    //Publics
+    public float PlatformLength { get; private set; }
 
     private void Awake()
     {
-        PlatformLength = transform.localScale.x;
+        targetSize = PlatformLength = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * speed;
     }
@@ -55,15 +60,32 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(nameof(DragAlong));
     }
 
-    private static void AddPowerUp(PowerUpController.PowerUpTypes powerUp)
+    private void AddPowerUp(PowerUpController.PowerUpTypes powerUp)
     {
         switch (powerUp)
         {
             case PowerUpController.PowerUpTypes.ExtraBall:
                 GameManager.Instance.AddBall();
                 break;
+            case PowerUpController.PowerUpTypes.LongerPlatform:
+                if (sizeControl != null) StopCoroutine(sizeControl);
+                sizeControl = StartCoroutine(nameof(MakePlatformLonger));
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(powerUp), powerUp, null);
         }
+    }
+
+    [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
+    private IEnumerator MakePlatformLonger()
+    {
+        transform.localScale += sizeMod * Vector3.right;
+        while (PlatformLength > targetSize)
+        {
+            transform.localScale -= shrinkSpeed * Time.deltaTime * Vector3.right;
+            PlatformLength = transform.localScale.x;
+            yield return null;
+        }
+        yield return null;
     }
 }

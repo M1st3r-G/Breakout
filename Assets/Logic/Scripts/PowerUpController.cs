@@ -7,7 +7,7 @@ public class PowerUpController : MonoBehaviour
     //Temps
     private PowerUpTypes type;
     //Publics
-    public enum PowerUpTypes { ExtraBall }
+    public enum PowerUpTypes { ExtraBall, LongerPlatform }
     public delegate void OnPowerUpDelegate(PowerUpTypes addedPowerUp);
     public static event OnPowerUpDelegate OnPowerUp;
 

@@ -51,7 +51,7 @@ public class BallController : MonoBehaviour
                 
                 GameManager.Instance.PlayAudioEffect(4);
                 float diff = transform.position.x - collision.collider.transform.position.x;
-                float percent = diff / PlayerController.PlatformLength + 0.5f;
+                float percent = diff / collision.collider.GetComponent<PlayerController>().PlatformLength + 0.5f;
                 float rDisplacement = Random.Range(-0.1f, 0.1f);
                 rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
                 break;
