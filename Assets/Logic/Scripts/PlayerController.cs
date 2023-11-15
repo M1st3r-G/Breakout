@@ -20,11 +20,10 @@ public class PlayerController : MonoBehaviour
     private float targetSize;
     private Coroutine sizeControl;
     //Publics
-    public float PlatformLength { get; private set; }
 
     private void Awake()
     {
-        targetSize = PlatformLength = transform.localScale.x;
+        targetSize = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.down * speed;
     }
@@ -78,14 +77,18 @@ public class PlayerController : MonoBehaviour
 
     [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
     private IEnumerator MakePlatformLonger()
-    {
+    {            
         transform.localScale += sizeMod * Vector3.right;
-        while (PlatformLength > targetSize)
+        while (transform.localScale.x > targetSize)
         {
             transform.localScale -= shrinkSpeed * Time.deltaTime * Vector3.right;
-            PlatformLength = transform.localScale.x;
             yield return null;
         }
         yield return null;
+    }
+
+    public float PlatformLength()
+    {
+        return transform.localScale.x;
     }
 }

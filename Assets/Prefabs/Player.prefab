@@ -128,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAxis: {fileID: -756759010786599959, guid: aa74f2749951a944c90edfa9f0f7763b, type: 3}
   speed: 10
+  sizeMod: 1
+  shrinkSpeed: 0.1
 --- !u!70 &1850991833248436725
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
