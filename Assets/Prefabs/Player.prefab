@@ -130,6 +130,7 @@ MonoBehaviour:
   speed: 10
   sizeMod: 1
   shrinkSpeed: 0.1
+  sizeCap: 4
 --- !u!70 &1850991833248436725
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

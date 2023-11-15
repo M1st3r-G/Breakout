@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float sizeMod;
     [SerializeField] private float shrinkSpeed;
+    [SerializeField] private float sizeCap;
     //Temps
     private float moveValue;
     private float targetSize;
@@ -77,8 +78,10 @@ public class PlayerController : MonoBehaviour
 
     [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
     private IEnumerator MakePlatformLonger()
-    {            
-        transform.localScale += sizeMod * Vector3.right;
+    {
+        Vector3 tmp = transform.localScale + sizeMod * Vector3.right;
+        if (tmp.x > sizeCap) tmp.x = sizeCap;
+        transform.localScale = tmp;
         while (transform.localScale.x > targetSize)
         {
             transform.localScale -= shrinkSpeed * Time.deltaTime * Vector3.right;
