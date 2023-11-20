@@ -48,10 +48,7 @@ public class BallController : MonoBehaviour
                 if (collision.collider.transform.position.y > transform.position.y) return;
                 
                 GameManager.Instance.PlayAudioEffect(4);
-                float diff = transform.position.x - collision.collider.transform.position.x;
-                float percent = diff / collision.collider.GetComponent<PlayerController>().PlatformLength() + 0.5f;
-                float rDisplacement = Random.Range(-0.1f, 0.1f);
-                rb.velocity = new Vector2(Mathf.Lerp(-1f, 1f, percent + rDisplacement), 1).normalized * speed;
+                rb.velocity = GetVectorByDisplacement(collision.collider.transform, 0.1f);
                 break;
             case "Wall":
                 GameManager.Instance.PlayAudioEffect(1);
@@ -64,6 +61,15 @@ public class BallController : MonoBehaviour
         }
     }
 
+    private Vector2 GetVectorByDisplacement(Transform otherObject, float noise)
+    {
+        return new Vector2(
+            Mathf.Lerp(-1f, 1f,
+                transform.position.x -
+                otherObject.position.x / otherObject.GetComponent<PlayerController>().PlatformLength() + 0.5f +
+                Random.Range(-noise, noise)), 1).normalized * speed;
+    }
+    
     private void OnRestart(InputAction.CallbackContext ctx)
     {
         Restart();
