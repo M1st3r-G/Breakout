@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shrinkSpeed;
     [SerializeField] private float sizeCap;
     //Temps
-    private float moveValue;
-    private float targetSize;
+    private float moveValue, targetSize;
     private Coroutine sizeControl;
     //Publics
 

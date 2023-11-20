@@ -12,12 +12,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] powerUp;
     [SerializeField] private AudioClip[] clips;
     private AudioSource audioSource;
-    private TextMeshProUGUI pointsText;
-    private TextMeshProUGUI lifeText;
+    private TextMeshProUGUI pointsText, lifeText;
     private PlayerController player;
     //InnerTemps
-    private int curLife;
-    private int curPoints = 0;
+    private int curLife, curPoints;
     private List<BrickController> allBricks;
     private List<BallController> allBalls;
     //Params
@@ -106,6 +104,7 @@ public class GameManager : MonoBehaviour
 
     private bool AnyBrickActive()
     {
+        
         return allBricks.Any(brick => brick.gameObject.activeSelf);
     }
 
