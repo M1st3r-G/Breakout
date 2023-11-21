@@ -163,3 +163,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartAction: {fileID: -8209589194934715247, guid: aa74f2749951a944c90edfa9f0f7763b, type: 3}
   speed: 8
+  dragDistance: 1

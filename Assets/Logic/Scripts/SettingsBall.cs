@@ -15,7 +15,6 @@ public class SettingsBall : MonoBehaviour
     // InnerTemps
     private Vector3 startPosition;
 
-    // Unity-Awake Methode
     private void Awake()
     {
         // Set InnerComponents
@@ -31,20 +30,13 @@ public class SettingsBall : MonoBehaviour
     }
     
     //Button needs this
-    public void Exit()
-    {
-        Application.Quit();
-    }
+    public void Exit() => Application.Quit();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GetComponent<TextMeshProUGUI>().color = Vector4.zero; 
         SceneManager.LoadScene(1); // Level1
     }
-    
-    // Button needs this
-    public void OpenMainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
+
+    public void OpenMainMenu() => SceneManager.LoadScene(0);
 }

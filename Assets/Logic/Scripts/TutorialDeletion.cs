@@ -19,8 +19,5 @@ public class TutorialDeletion : MonoBehaviour
         destroy.action.Disable();
     }
     
-    private void OnDestroyAction(InputAction.CallbackContext ctx)
-    {
-        Destroy(gameObject);
-    }
+    private void OnDestroyAction(InputAction.CallbackContext ctx) => Destroy(gameObject);
 }

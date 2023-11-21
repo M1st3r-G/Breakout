@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class BrickController : MonoBehaviour
@@ -20,12 +21,14 @@ public class BrickController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(strength >= 2)
+        OnHit?.Invoke(gameObject);
+        if (strength >= 2)
         {
             strength--;
-            sprite.sprite = sprites[strength-1];
+            sprite.sprite = sprites[strength - 1];
         }
         else gameObject.SetActive(false);
-        OnHit?.Invoke(gameObject);
     }
+
+    public int GetStrength() => strength;
 }

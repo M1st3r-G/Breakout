@@ -10,6 +10,7 @@ public class BallController : MonoBehaviour
     private Rigidbody2D rb;
     // Params
     [SerializeField] private float speed;
+    [SerializeField] private float dragDistance;
     //Temps
     private bool isDragged;
     //Publics
@@ -73,11 +74,7 @@ public class BallController : MonoBehaviour
                 Random.Range(-noise, noise)), 1).normalized * speed;
     }
     
-    private void OnRestart(InputAction.CallbackContext ctx)
-    {
-        Restart();
-    }
-    
+    private void OnRestart(InputAction.CallbackContext ctx) => Restart(); 
     public void Restart()
     {
         transform.parent = null;
@@ -87,21 +84,18 @@ public class BallController : MonoBehaviour
         restartAction.action.performed -= OnRestart;
         restartAction.action.Disable();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         OnBallExit?.Invoke(this);
     }
 
-    public void StartDrag(Transform toFollow)
-    {
-        StartCoroutine(nameof(DragAlong), toFollow);
-    }
+    public void StartDrag(Transform toFollow) => StartCoroutine(nameof(DragAlong), toFollow);
     private IEnumerator DragAlong(Transform toFollow)
     {
         while (isDragged)
         {
-            transform.position = toFollow.position;
+            transform.position = toFollow.position + new Vector3(0f, dragDistance,0f);
             yield return null;
         }
     }
