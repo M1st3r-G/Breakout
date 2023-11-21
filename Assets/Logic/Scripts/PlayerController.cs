@@ -89,8 +89,5 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
-    public float PlatformLength()
-    {
-        return transform.localScale.x;
-    }
+    public float PlatformLength() => transform.localScale.x;
 }

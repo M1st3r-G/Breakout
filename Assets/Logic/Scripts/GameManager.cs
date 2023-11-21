@@ -7,7 +7,7 @@ using TMPro;
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
-    //OuterComponentReferences
+    //ComponentReferences
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject[] powerUp;
     [SerializeField] private AudioClip[] clips;
@@ -22,23 +22,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int maxLife = 3;
     [SerializeField, Range(0f,1f)] private float percent;
     //Publics
-    public static GameManager Instance { get; private set; }
+    private static GameManager _instance;
+    public static GameManager Instance => _instance;
+    
     public static event System.Action OnGameOver;
 
     private void Awake()
     {
-        if (Instance != null)
+        if (_instance != null)
         {
             Destroy(gameObject);
             return;
         }
         curLife = maxLife;
-        Instance = this;
+        _instance = this;
         audioSource = GetComponent<AudioSource>();
         allBalls = new List<BallController>();
         DontDestroyOnLoad(this);
     }
-
+    
     private void OnEnable()
     {
         BallController.OnBallExit += RemoveLife;
@@ -60,7 +62,7 @@ public class GameManager : MonoBehaviour
         // Destroy if in Menu
         if(scene.buildIndex == 0)
         {
-            Instance = null;
+            _instance = null;
             Destroy(gameObject);
             return;
         }
@@ -102,11 +104,7 @@ public class GameManager : MonoBehaviour
         if (!AnyBrickActive()) LoadNextScene();
     }
 
-    private bool AnyBrickActive()
-    {
-        
-        return allBricks.Any(brick => brick.gameObject.activeSelf);
-    }
+    private bool AnyBrickActive() => allBricks.Any(brick => brick.gameObject.activeSelf);
 
     private static void LoadNextScene()
     {
