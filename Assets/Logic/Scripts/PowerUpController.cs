@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
-    //Temps
-    private PowerUpTypes type;
+    //Params
+    [SerializeField] private PowerUpTypes type;
     //Publics
-    public enum PowerUpTypes { ExtraBall, LongerPlatform }
+    public enum PowerUpTypes { Undefined, ExtraBall, LongerPlatform, Rocket }
+    
     public delegate void OnPowerUpDelegate(PowerUpTypes addedPowerUp);
     public static event OnPowerUpDelegate OnPowerUp;
 
     private void Awake()
     {
-        type = (PowerUpTypes)UnityEngine.Random.Range(0, 
-            Enum.GetNames(typeof(PowerUpTypes)).Length);
-        // TODO: Indicate Type
-        print(type);
+        if(type == PowerUpTypes.Undefined) throw new UnassignedReferenceException();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            GameManager.Instance.PlayAudioEffect(3);
-            OnPowerUp?.Invoke(type);
-        }
         Destroy(gameObject);
+        if (!collision.gameObject.CompareTag("Player")) return;
+        GameManager.Instance.PlayAudioEffect(3);
+        OnPowerUp?.Invoke(type);
     }
 }

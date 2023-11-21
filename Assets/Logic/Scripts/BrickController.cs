@@ -10,7 +10,7 @@ public class BrickController : MonoBehaviour
     [SerializeField] private Sprite[] sprites;
     [SerializeField, Range(1,5)] private int strength = 1;
     //Publics
-    public delegate void OnHitDelegate(GameObject brickHit);
+    public delegate void OnHitDelegate(BrickController brickHit);
     public static event OnHitDelegate OnHit;
 
     private void Awake()
@@ -21,14 +21,12 @@ public class BrickController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnHit?.Invoke(gameObject);
-        if (strength >= 2)
-        {
-            strength--;
-            sprite.sprite = sprites[strength - 1];
-        }
-        else gameObject.SetActive(false);
+        strength--;
+        if (strength <= 0) gameObject.SetActive(false);
+        else sprite.sprite = sprites[strength - 1];
+        OnHit?.Invoke(this);
     }
 
     public int GetStrength() => strength;
+    public Sprite GetSpriteWithStrength(int pStrength) => sprites[pStrength];
 }

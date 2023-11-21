@@ -1,15 +1,19 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
     //ComponentReferences
     [SerializeField] private GameObject ball;
-    [SerializeField] private GameObject[] powerUp;
+    [SerializeField] private GameObject rocket;
+    [SerializeField] private GameObject[] powerUps;
     [SerializeField] private AudioClip[] clips;
     private AudioSource audioSource;
     private TextMeshProUGUI pointsText, lifeText;
@@ -25,7 +29,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance => _instance;
     
-    public static event System.Action OnGameOver;
+    public static event Action OnGameOver;
 
     private void Awake()
     {
@@ -47,6 +51,7 @@ public class GameManager : MonoBehaviour
         BrickController.OnHit += AddPoints;
         BrickController.OnHit += SpawnItem;
         SceneManager.sceneLoaded += RefreshReferences;
+        PowerUpController.OnPowerUp += AddPowerUp;
     }
 
     private void OnDisable()
@@ -55,6 +60,7 @@ public class GameManager : MonoBehaviour
         BrickController.OnHit -= AddPoints;
         BrickController.OnHit -= SpawnItem;
         SceneManager.sceneLoaded -= RefreshReferences;
+        PowerUpController.OnPowerUp -= AddPowerUp;
     }
 
     private void RefreshReferences(Scene scene, LoadSceneMode mode)
@@ -96,7 +102,7 @@ public class GameManager : MonoBehaviour
         else AddBall(true);
     }
 
-    private void AddPoints(GameObject hitBrick)
+    private void AddPoints(BrickController hitBrick)
     {
         curPoints++;
         pointsText.text = curPoints.ToString();
@@ -115,7 +121,7 @@ public class GameManager : MonoBehaviour
             currentSceneIndex < SceneManager.sceneCountInBuildSettings ? currentSceneIndex : 0);
     }
 
-    public void AddBall(bool first = false)
+    private void AddBall(bool first = false)
     {
         BallController newBall = Instantiate(ball, player.transform.position + Vector3.up, Quaternion.identity)
             .GetComponent<BallController>();
@@ -127,18 +133,41 @@ public class GameManager : MonoBehaviour
         allBalls.Add(newBall);
     }
 
-    private void SpawnItem(GameObject hitBrick)
+    private void SpawnItem(BrickController hitBrick)
     {
         if(Random.Range(0f,1f) <= percent)
         {
-            Instantiate(powerUp[Random.Range(0,powerUp.Length)], 
-                hitBrick.transform.position, 
-                hitBrick.transform.rotation);
+            Instantiate(powerUps[Random.Range(0,powerUps.Length)], 
+                hitBrick.transform);
         }
     }
 
     public void PlayAudioEffect(int index)
     {
         if(0 <= index && index < clips.Length) audioSource.PlayOneShot(clips[index]);
+    }
+
+    private void SpawnRocket()
+    {
+        Instantiate(rocket, player.transform.position + Vector3.up, Quaternion.Euler(0, 0, Random.Range(-45f, 45f)));
+    }
+
+    private void AddPowerUp(PowerUpController.PowerUpTypes collectedPowerUp)
+    {
+        switch (collectedPowerUp)
+        {
+            case PowerUpController.PowerUpTypes.ExtraBall:
+                AddBall();
+                break;
+            case PowerUpController.PowerUpTypes.LongerPlatform:
+                player.ActivateSizePowerUp();
+                break;
+            case PowerUpController.PowerUpTypes.Rocket:
+                SpawnRocket();
+                break;
+            case PowerUpController.PowerUpTypes.Undefined:
+            default:
+                throw new ArgumentOutOfRangeException(nameof(collectedPowerUp), collectedPowerUp, null);
+        }
     }
 }

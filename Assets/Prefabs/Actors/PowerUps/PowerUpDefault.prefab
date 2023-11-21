@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 606461112060487243}
   - component: {fileID: 7883317498625108412}
   m_Layer: 9
-  m_Name: PowerUpCoin
+  m_Name: PowerUpDefault
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2034892592, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -183,3 +183,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbe7ef6d5238ac744a14fb1f99abc60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 0

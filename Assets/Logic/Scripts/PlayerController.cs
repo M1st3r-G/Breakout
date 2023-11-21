@@ -30,13 +30,11 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         moveAxis.action.Enable();
-        PowerUpController.OnPowerUp += AddPowerUp;
     }
 
     private void OnDisable()
     {
         moveAxis.action.Disable();
-        PowerUpController.OnPowerUp -= AddPowerUp;
     }
 
     private void FixedUpdate()
@@ -44,21 +42,12 @@ public class PlayerController : MonoBehaviour
         rb.velocity =  moveAxis.action.ReadValue<float>() * speed * Vector2.right;
     }
 
-    private void AddPowerUp(PowerUpController.PowerUpTypes powerUp)
+    public void ActivateSizePowerUp()
     {
-        switch (powerUp)
-        {
-            case PowerUpController.PowerUpTypes.ExtraBall:
-                GameManager.Instance.AddBall();
-                break;
-            case PowerUpController.PowerUpTypes.LongerPlatform:
-                if (sizeControl != null) StopCoroutine(sizeControl);
-                sizeControl = StartCoroutine(nameof(MakePlatformLonger));
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(powerUp), powerUp, null);
-        }
+        if (sizeControl != null) StopCoroutine(sizeControl);
+        sizeControl = StartCoroutine(nameof(MakePlatformLonger));
     }
+    
     private IEnumerator MakePlatformLonger()
     {
         Vector3 tmp = transform.localScale + sizeMod * Vector3.right;

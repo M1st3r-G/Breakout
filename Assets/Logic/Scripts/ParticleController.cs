@@ -33,11 +33,12 @@ public class ParticleController : MonoBehaviour
         BrickController.OnHit -= SpawnParticles;
     }
 
-    private void SpawnParticles(GameObject brick)
+    private void SpawnParticles(BrickController brick)
     {
         transform.position = brick.transform.position;
-        particles.textureSheetAnimation.SetSprite(0, brick.GetComponent<SpriteRenderer>().sprite);
-        int amount = 10 * (6 - brick.GetComponent<BrickController>().GetStrength());
+        int brickStr = brick.GetStrength();
+        particles.textureSheetAnimation.SetSprite(0, brick.GetSpriteWithStrength(brickStr));
+        int amount = 10 * (6 - brickStr);
         particles.Emit(amount);
     }
 }
