@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 public class PowerUpController : MonoBehaviour
 {
     //Params

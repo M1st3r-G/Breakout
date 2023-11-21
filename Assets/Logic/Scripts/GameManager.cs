@@ -78,7 +78,9 @@ public class GameManager : MonoBehaviour
         allBricks = new List<BrickController>();
         foreach (GameObject brickObject in GameObject.FindGameObjectsWithTag("Brick"))
         {
-            allBricks.Add(brickObject.GetComponent<BrickController>());
+            //Exclude Bricks without BrickController = Indestructable
+            BrickController tmp = brickObject.GetComponent<BrickController>();
+            if(tmp is not null) allBricks.Add(tmp);
         }
 
         pointsText = GameObject.FindGameObjectWithTag("Points").GetComponent<TextMeshProUGUI>();
@@ -110,7 +112,14 @@ public class GameManager : MonoBehaviour
         if (!AnyBrickActive()) LoadNextScene();
     }
 
-    private bool AnyBrickActive() => allBricks.Any(brick => brick.gameObject.activeSelf);
+    private bool AnyBrickActive(){
+        foreach (var brick in allBricks)
+        {
+            if(brick is null) print("NullBrickfound");
+            else if(brick.gameObject.activeSelf) return true;
+        }
+        return false;
+    }
 
     private static void LoadNextScene()
     {
@@ -135,11 +144,9 @@ public class GameManager : MonoBehaviour
 
     private void SpawnItem(BrickController hitBrick)
     {
-        if(Random.Range(0f,1f) <= percent)
-        {
-            Instantiate(powerUps[Random.Range(0,powerUps.Length)], 
-                hitBrick.transform);
-        }
+        if (!(Random.Range(0f, 1f) <= percent)) return;
+        Instantiate(powerUps[Random.Range(0,powerUps.Length)], 
+            hitBrick.transform.position, Quaternion.identity);
     }
 
     public void PlayAudioEffect(int index)

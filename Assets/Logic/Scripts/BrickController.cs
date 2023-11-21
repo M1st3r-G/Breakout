@@ -28,5 +28,7 @@ public class BrickController : MonoBehaviour
     }
 
     public int GetStrength() => strength;
-    public Sprite GetSpriteWithStrength(int pStrength) => sprites[pStrength];
+
+    public Sprite GetSpriteWithStrength(int pStrength) =>
+        sprites[(1 <= pStrength && pStrength <= sprites.Length) ? pStrength - 1 : 0];
 }
