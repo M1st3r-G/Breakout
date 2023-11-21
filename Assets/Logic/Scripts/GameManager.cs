@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private AudioSource audioSource;
     private TextMeshProUGUI pointsText, lifeText;
     private PlayerController player;
-    //InnerTemps
+    //Temps
     private int curLife, curPoints;
     private List<BrickController> allBricks;
     private List<BallController> allBalls;
@@ -121,8 +121,7 @@ public class GameManager : MonoBehaviour
             .GetComponent<BallController>();
         if (first)
         {
-            newBall.transform.SetParent(player.transform);
-            player.StartDrag();
+            newBall.StartDrag(player.transform);
         }
         else newBall.Restart();
         allBalls.Add(newBall);

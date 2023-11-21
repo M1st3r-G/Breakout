@@ -44,21 +44,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity =  moveAxis.action.ReadValue<float>() * speed * Vector2.right;
     }
 
-    private IEnumerator DragAlong()
-    {
-        while (transform.childCount>0)
-        {
-            transform.GetChild(0).localPosition = new Vector3(0f, 1f, 0f);
-            yield return null;
-        }
-        yield return null;
-    }
-
-    public void StartDrag()
-    {
-        StartCoroutine(nameof(DragAlong));
-    }
-
     private void AddPowerUp(PowerUpController.PowerUpTypes powerUp)
     {
         switch (powerUp)
@@ -74,8 +59,6 @@ public class PlayerController : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(powerUp), powerUp, null);
         }
     }
-
-    [SuppressMessage("ReSharper", "Unity.InefficientPropertyAccess")]
     private IEnumerator MakePlatformLonger()
     {
         Vector3 tmp = transform.localScale + sizeMod * Vector3.right;

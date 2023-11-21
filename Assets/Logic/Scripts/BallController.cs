@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,10 +7,11 @@ public class BallController : MonoBehaviour
 {
     //OuterComponents
     [SerializeField] private InputActionReference restartAction; 
-    // InnerComponents
     private Rigidbody2D rb;
-    // OuterParams
+    // Params
     [SerializeField] private float speed;
+    //Temps
+    private bool isDragged;
     //Publics
     public delegate void OnBallExitDelegate(BallController bc);
     public static event OnBallExitDelegate OnBallExit;
@@ -38,6 +40,7 @@ public class BallController : MonoBehaviour
     {
         // Set InnerComponents
         rb = GetComponent<Rigidbody2D>();
+        isDragged = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -79,9 +82,8 @@ public class BallController : MonoBehaviour
     {
         transform.parent = null;
         rb.velocity = Vector2.up * speed;
-        
-        // Needed to Only start the Ball Once
-        // TODO Test this.
+
+        isDragged = false;
         restartAction.action.performed -= OnRestart;
         restartAction.action.Disable();
     }
@@ -89,5 +91,18 @@ public class BallController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         OnBallExit?.Invoke(this);
+    }
+
+    public void StartDrag(Transform toFollow)
+    {
+        StartCoroutine(nameof(DragAlong), toFollow);
+    }
+    private IEnumerator DragAlong(Transform toFollow)
+    {
+        while (isDragged)
+        {
+            transform.position = toFollow.position;
+            yield return null;
+        }
     }
 }
