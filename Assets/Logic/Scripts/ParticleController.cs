@@ -37,7 +37,7 @@ public class ParticleController : MonoBehaviour
     {
         transform.position = brick.transform.position;
         int brickStr = brick.GetStrength();
-        particles.textureSheetAnimation.SetSprite(0, brick.GetSpriteWithStrength(brickStr));
+        particles.textureSheetAnimation.SetSprite(0, brick.GetSpriteWithStrength(brickStr + 1));
         int amount = 10 * (6 - brickStr);
         particles.Emit(amount);
     }
