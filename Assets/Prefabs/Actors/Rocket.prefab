@@ -5100,7 +5100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 1648975292542363101}
   right: {fileID: 7647381934289401459}
-  initVelocity: 7.5
+  targetVelocity: 5
+  initKick: 15
   amountModifier: 0.5
 --- !u!1 &8925802926958495974
 GameObject:

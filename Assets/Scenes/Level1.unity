@@ -319,6 +319,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6702605912942994456, guid: 914adad2c6f6fa147964b359c9965b60, type: 3}
+      propertyPath: percent
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702605912942994456, guid: 914adad2c6f6fa147964b359c9965b60, type: 3}
+      propertyPath: powerUps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6702605912942994456, guid: 914adad2c6f6fa147964b359c9965b60, type: 3}
+      propertyPath: powerUps.Array.data[0]
+      value: 
+      objectReference: {fileID: 1496366749314395336, guid: 9bac50499a6ef5d44ad71c5f25e7c5b5, type: 3}
+    - target: {fileID: 6702605912942994456, guid: 914adad2c6f6fa147964b359c9965b60, type: 3}
+      propertyPath: powerUps.Array.data[1]
+      value: 
+      objectReference: {fileID: 1496366749314395336, guid: 9bac50499a6ef5d44ad71c5f25e7c5b5, type: 3}
     - target: {fileID: 7544712141824493635, guid: 914adad2c6f6fa147964b359c9965b60, type: 3}
       propertyPath: m_Name
       value: GameManager
