@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         allBalls = new List<BallController>();
         DontDestroyOnLoad(this);
     }
+
+    public List<BrickController> GetActiveBricks()
+    {
+        return allBricks.Where(brick => brick.isActiveAndEnabled).ToList();
+    }
     
     private void OnEnable()
     {
@@ -112,13 +117,9 @@ public class GameManager : MonoBehaviour
         if (!AnyBrickActive()) LoadNextScene();
     }
 
-    private bool AnyBrickActive(){
-        foreach (var brick in allBricks)
-        {
-            if(brick is null) print("NullBrickfound");
-            else if(brick.gameObject.activeSelf) return true;
-        }
-        return false;
+    private bool AnyBrickActive()
+    {
+        return allBricks.Any(brick => brick.gameObject.activeSelf);
     }
 
     private static void LoadNextScene()
