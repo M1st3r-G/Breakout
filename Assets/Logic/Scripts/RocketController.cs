@@ -17,13 +17,22 @@ public class RocketController : MonoBehaviour
     [SerializeField] private float amountModifier;
     //Temps
     private BrickController target;
+    private float multiplier = 1;
     //Publics
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = RandomBetweenAngle(0, 180) * initKick;
+        if (transform.position.x < 0)
+        {
+            rb.velocity = RandomBetweenAngle(15, 75) * initKick;
+        }
+        else
+        {
+            rb.velocity = RandomBetweenAngle(105, 165) * initKick;
+        }
         
+                
         // Set the Emission over Distance to Amount
         ParticleSystem.EmissionModule[] tmp = {left.emission, right.emission};
         int tmpAmount = (int)(rb.velocity.magnitude * amountModifier);
@@ -45,9 +54,10 @@ public class RocketController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float speed = Mathf.Lerp(rb.velocity.magnitude, targetVelocity, Time.deltaTime);
-        rb.velocity = Vector2.Lerp(rb.velocity, VectorTowards(target.transform), Time.deltaTime).normalized * speed;
-        
+        multiplier += 0.1f;
+        float speed = Mathf.Lerp(rb.velocity.magnitude, targetVelocity, Time.deltaTime* multiplier);
+        rb.velocity = Vector2.Lerp(rb.velocity, VectorTowards(target.transform), Time.deltaTime * multiplier).normalized * speed;
+        transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(rb.velocity.y, rb.velocity.x)*Mathf.Rad2Deg);
     }
 
     private void SetTarget(BrickController b = null)
