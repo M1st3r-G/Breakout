@@ -55,7 +55,7 @@ public class RocketController : MonoBehaviour
     private void FixedUpdate()
     {
         multiplier += 0.1f;
-        float speed = Mathf.Lerp(rb.velocity.magnitude, targetVelocity, Time.deltaTime* multiplier);
+        float speed = Mathf.Lerp(rb.velocity.magnitude, targetVelocity, Time.deltaTime);
         rb.velocity = Vector2.Lerp(rb.velocity, VectorTowards(target.transform), Time.deltaTime * multiplier).normalized * speed;
         transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(rb.velocity.y, rb.velocity.x)*Mathf.Rad2Deg);
     }
