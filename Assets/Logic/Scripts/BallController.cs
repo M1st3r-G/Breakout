@@ -13,6 +13,7 @@ public class BallController : MonoBehaviour
     [SerializeField] private float dragDistance;
     //Temps
     private bool isDragged;
+    private int consecHits;
     //Publics
     public delegate void OnBallExitDelegate(BallController bc);
     public static event OnBallExitDelegate OnBallExit;
@@ -42,6 +43,7 @@ public class BallController : MonoBehaviour
         // Set InnerComponents
         rb = GetComponent<Rigidbody2D>();
         isDragged = true;
+        consecHits = -1;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,7 +52,7 @@ public class BallController : MonoBehaviour
         {
             case "Player":
                 if (collision.collider.transform.position.y > transform.position.y) return;
-                
+                consecHits = -1;
                 GameManager.Instance.PlayAudioEffect(4);
                 rb.velocity = GetVectorByDisplacement(collision.collider.transform, 0.1f);
                 break;
@@ -58,9 +60,15 @@ public class BallController : MonoBehaviour
                 GameManager.Instance.PlayAudioEffect(1);
                 break;
             case "Brick":
-                // If no BrickController -> Unbreakable
-                GameManager.Instance.PlayAudioEffect(
-                    collision.collider.gameObject.GetComponent<BrickController>() != null ? 0: 2);
+                if (collision.collider.gameObject.GetComponent<BrickController>() is null)
+                {  // If no BrickController -> Unbreakable
+                    GameManager.Instance.PlayAudioEffect(2);
+                }
+                else
+                {
+                    consecHits++;
+                    GameManager.Instance.PlayBrickHitEffect(consecHits);
+                }
                 break;
         }
     }
