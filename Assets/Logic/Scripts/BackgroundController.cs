@@ -9,7 +9,7 @@ public class BackgroundController : MonoBehaviour
     private void Awake()
     {
         background = transform.GetChild(0).transform;
-        float xpos = 345 - (SceneManager.GetActiveScene().buildIndex - 1) * (345f / (SceneManager.sceneCount - 1));
-        background.position = new Vector3(xpos, background.position.y, background.position.z);
+        float xPos = 345 - (SceneManager.GetActiveScene().buildIndex - 1) * (345f / (SceneManager.sceneCountInBuildSettings - 1f));
+        background.position = new Vector3(xPos, background.position.y, background.position.z);
     }
 }

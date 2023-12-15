@@ -157,7 +157,7 @@ public class GameManager : MonoBehaviour
 
     public void PlayBrickHitEffect(int amount)
     {
-        audioSource.pitch = 1 + Mathf.Pow(2, (float) amount / 12);
+        audioSource.pitch = 1 + amount * 2f;
         audioSource.PlayOneShot(clips[0]);
         audioSource.pitch = 1;
     }
