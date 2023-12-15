@@ -37,5 +37,7 @@ public class GameOverFade : MonoBehaviour
             group.alpha += Time.deltaTime / timeInSeconds;
             yield return null;
         }
+
+        Time.timeScale = 0f;
     }
 }

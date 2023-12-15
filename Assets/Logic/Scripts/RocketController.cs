@@ -80,7 +80,12 @@ public class RocketController : MonoBehaviour
         return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
     }
 
-    private void OnCollisionEnter2D(Collision2D other) => Destroy(gameObject);
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        particleThruster.transform.SetParent(null, true);
+        Destroy(particleThruster.gameObject, particleThruster.main.startLifetime.constant);
+        Destroy(gameObject);
+    }
     private Vector2 VectorTowards(Transform pTarget) => pTarget.position - transform.position;
 
 }
