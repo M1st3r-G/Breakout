@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class GameOverFade : MonoBehaviour
@@ -18,17 +19,20 @@ public class GameOverFade : MonoBehaviour
     {
         GameManager.OnGameOver += OnGameOver;
     }
-
-    private void OnGameOver()
-    {
-        StartCoroutine(FadeIn());
-    }
     
     private void OnDisable()
     {
         GameManager.OnGameOver -= OnGameOver;
     }
 
+    private void OnGameOver()
+    {
+        StartCoroutine(FadeIn());
+    }
+
+    public void ExitGame() => Application.Quit();
+    public void MainMenu() => SceneManager.LoadScene(0);
+    
     private IEnumerator FadeIn()
     {
         group.interactable = true;
