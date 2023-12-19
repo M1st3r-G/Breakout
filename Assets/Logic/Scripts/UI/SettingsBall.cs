@@ -6,7 +6,7 @@ using UnityEngine;
 public class SettingsBall : MonoBehaviour
 {
     //Components
-    [SerializeField] private GameObject target;
+    [SerializeField] private Vector3 target;
     private Rigidbody2D rb;
     // Params
     public float speed;
@@ -23,7 +23,7 @@ public class SettingsBall : MonoBehaviour
     {
         if (rb.velocity.magnitude > 0.1f) return;
         rb.angularVelocity = 30f;
-        rb.velocity = (target.transform.position - startPosition).normalized * speed;
+        rb.velocity = (target - startPosition).normalized * speed;
     }
     
     public void Exit() => Application.Quit();
