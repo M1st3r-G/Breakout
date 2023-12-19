@@ -9,20 +9,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2101904021234710127, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
-      propertyPath: m_Color.b
-      value: 0.3160377
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101904021234710127, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101904021234710127, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
-      propertyPath: m_Color.r
-      value: 0.3160377
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 36557626e8075554982ce0cf35624d34, type: 3}
     - target: {fileID: 4139116498536761642, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
       propertyPath: m_Name
-      value: PowerUpBall
+      value: PowerUpBall Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5594022068328128412, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
       propertyPath: m_LocalPosition.x

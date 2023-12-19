@@ -6,7 +6,7 @@ public class PowerUpController : MonoBehaviour
     //Params
     [SerializeField] private PowerUpTypes type;
     //Publics
-    public enum PowerUpTypes { Undefined, ExtraBall, LongerPlatform, Rocket }
+    public enum PowerUpTypes { Undefined, ExtraBall, LongerPlatform, Rocket, Heart }
     
     public delegate void OnPowerUpDelegate(PowerUpTypes addedPowerUp);
     public static event OnPowerUpDelegate OnPowerUp;

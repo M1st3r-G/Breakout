@@ -9,17 +9,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2101904021234710127, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101904021234710127, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
-      propertyPath: m_Color.g
-      value: 0.25490198
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101904021234710127, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8c2ffaa628c0c2f4abf2e6365aa1f4c5, type: 3}
     - target: {fileID: 4139116498536761642, guid: 4462495d6b6c8fa40bd219638764af12, type: 3}
       propertyPath: m_Name
       value: PowerUpPlatform Variant

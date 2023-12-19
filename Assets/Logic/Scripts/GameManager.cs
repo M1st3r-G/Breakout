@@ -167,6 +167,12 @@ public class GameManager : MonoBehaviour
         Instantiate(rocket, player.transform.position + Vector3.up, Quaternion.Euler(0, 0, Random.Range(-45f, 45f)));
     }
 
+    private void AddLife()
+    {
+        curLife++;
+        lifeText.text = curLife.ToString();
+    }
+    
     private void AddPowerUp(PowerUpController.PowerUpTypes collectedPowerUp)
     {
         switch (collectedPowerUp)
@@ -179,6 +185,9 @@ public class GameManager : MonoBehaviour
                 break;
             case PowerUpController.PowerUpTypes.Rocket:
                 SpawnRocket();
+                break;
+            case PowerUpController.PowerUpTypes.Heart:
+                AddLife();
                 break;
             case PowerUpController.PowerUpTypes.Undefined:
             default:

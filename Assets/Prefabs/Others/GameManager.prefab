@@ -147,6 +147,7 @@ MonoBehaviour:
   - {fileID: 6550270282992826071, guid: 3046f398f24ad2b4c9b8f01b186d64f1, type: 3}
   - {fileID: 7738428095234688691, guid: ed2a1ab62a5e38e42ad2fcd805dca108, type: 3}
   - {fileID: 1496366749314395336, guid: 9bac50499a6ef5d44ad71c5f25e7c5b5, type: 3}
+  - {fileID: 5500117537014574285, guid: 904907a9bc86fc647a2ade4d0594da3a, type: 3}
   clips:
   - {fileID: 8300000, guid: 68c7cee8e7b270740835e6da0cae34ee, type: 3}
   - {fileID: 8300000, guid: df63245194846194b8182430d6b69cf8, type: 3}
