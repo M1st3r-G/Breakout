@@ -9,6 +9,8 @@ TagManager:
   - Life
   - Points
   - Ball
+  - Target
+  - Canvas
   layers:
   - Default
   - TransparentFX

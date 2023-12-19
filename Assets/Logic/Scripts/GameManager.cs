@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
@@ -13,13 +12,35 @@ public class GameManager : MonoBehaviour
     //ComponentReferences
     [SerializeField] private GameObject ball;
     [SerializeField] private GameObject rocket;
+    [SerializeField] private GameObject heart;
     [SerializeField] private GameObject[] powerUps;
     [SerializeField] private AudioClip[] clips;
     private AudioSource audioSource;
     private TextMeshProUGUI pointsText, lifeText;
     private PlayerController player;
     //Temps
-    private int curLife, curPoints;
+    private int curLife;
+    public int CurLife
+    {
+        get => curLife;
+        set
+        {
+            curLife = value;
+            if (lifeText is not null) lifeText.text = curLife.ToString();
+        }
+    }
+
+    private int curPoints;
+
+    public int CurPoints
+    {
+        get => curPoints;
+        set
+        {
+            curPoints = value;
+            if (pointsText is not null) pointsText.text = curPoints.ToString();
+        }
+    }
     private List<BrickController> allBricks;
     private List<BallController> allBalls;
     //Params
@@ -38,7 +59,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        curLife = maxLife;
+        CurLife = maxLife;
         _instance = this;
         audioSource = GetComponent<AudioSource>();
         allBalls = new List<BallController>();
@@ -89,9 +110,9 @@ public class GameManager : MonoBehaviour
         }
 
         pointsText = GameObject.FindGameObjectWithTag("Points").GetComponent<TextMeshProUGUI>();
-        pointsText.text = curPoints.ToString();
+        pointsText.text = CurPoints.ToString();
         lifeText = GameObject.FindGameObjectWithTag("Life").GetComponent<TextMeshProUGUI>();
-        lifeText.text = curLife.ToString();
+        lifeText.text = CurLife.ToString();
         
         allBalls = new List<BallController>();
         AddBall(true);
@@ -103,17 +124,14 @@ public class GameManager : MonoBehaviour
         Destroy(pBall.gameObject);
 
         if (allBalls.Count != 0) return;
-        curLife--;
-        lifeText.text = curLife.ToString();
-        if (curLife == 0) OnGameOver?.Invoke();
+        CurLife--;
+        if (CurLife == 0) OnGameOver?.Invoke();
         else AddBall(true);
     }
 
     private void AddPoints(BrickController hitBrick)
     {
-        curPoints++;
-        pointsText.text = curPoints.ToString();
-        
+        CurPoints++;
         if (!AnyBrickActive()) LoadNextScene();
     }
 
@@ -167,10 +185,9 @@ public class GameManager : MonoBehaviour
         Instantiate(rocket, player.transform.position + Vector3.up, Quaternion.Euler(0, 0, Random.Range(-45f, 45f)));
     }
 
-    private void AddLife()
+    private void SpawnHeart()
     {
-        curLife++;
-        lifeText.text = curLife.ToString();
+        Instantiate(heart, player.transform.position, Quaternion.identity);
     }
     
     private void AddPowerUp(PowerUpController.PowerUpTypes collectedPowerUp)
@@ -187,7 +204,7 @@ public class GameManager : MonoBehaviour
                 SpawnRocket();
                 break;
             case PowerUpController.PowerUpTypes.Heart:
-                AddLife();
+                SpawnHeart();
                 break;
             case PowerUpController.PowerUpTypes.Undefined:
             default:
