@@ -11,6 +11,7 @@ public class SettingsBall : MonoBehaviour
     // Params
     public float speed;
     // Temps
+    private bool first = true;
     private Vector3 startPosition;
 
     private void Awake()
@@ -30,7 +31,11 @@ public class SettingsBall : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        GetComponent<TextMeshProUGUI>().color = Vector4.zero; 
+        if (first)
+        {
+            first = false;
+            return; 
+        }
         SceneManager.LoadScene(2); // Level1
     }
 }
