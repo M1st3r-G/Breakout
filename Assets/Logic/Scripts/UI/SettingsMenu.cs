@@ -47,8 +47,6 @@ public class SettingsMenu : MonoBehaviour
         int i = 0;
         foreach (Image image in DisplayBricks.GetComponentsInChildren<Image>())
         {
-            print(i);
-            print(spriteList);
             image.sprite = spriteList[i];
             i++;
         }
