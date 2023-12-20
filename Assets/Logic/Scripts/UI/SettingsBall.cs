@@ -29,6 +29,11 @@ public class SettingsBall : MonoBehaviour
     
     public void Exit() => Application.Quit();
 
+    public void GoToSettings()
+    {
+        SceneManager.LoadScene(1);
+    }
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (first)
