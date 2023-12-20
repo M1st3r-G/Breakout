@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310483b93c7523d4f9a423977a0ac421, type: 3}
+  m_Name: Color
+  m_EditorClassIdentifier: 
+  Set1:
+  - {fileID: -72351056, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -816515854, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -596549401, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -586060556, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: 867054487, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  Set2:
+  - {fileID: -1697920964, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: 1437811920, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -175284316, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: 827584209, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: 1508979278, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  Set3:
+  - {fileID: -982444102, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -951453409, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -1551848067, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: -935197264, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  - {fileID: 77396833, guid: a7cabf736f94aa8479dbcbead77d1eb2, type: 3}
+  Set4: []

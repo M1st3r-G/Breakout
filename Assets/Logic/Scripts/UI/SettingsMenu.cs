@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
@@ -7,7 +8,6 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField] private Toggle PartyToggle;
     [SerializeField] private Slider SoundSlider;
     [SerializeField] private GameObject DisplayBricks;
-
     [SerializeField] private ColorLibrary colors;
     //Params
     //Temps
@@ -20,7 +20,13 @@ public class SettingsMenu : MonoBehaviour
      
     private void Awake()
     {
-        DisplayBricks.transform.GetComponentsInChildren<Image>();
+        PartyMode = PlayerPrefs.GetInt("PartyMode", 0) == 1;
+        PartyToggle.isOn = PartyMode;
+        SoundValue = PlayerPrefs.GetFloat("Sound", 0.75f);
+        SoundSlider.value = SoundValue;
+        ColorSceme = PlayerPrefs.GetInt("ColorScheme", 0);
+        ColorSceme = 0;
+        SetSceme(colors.GetColorScheme(ColorSceme));
     }
 
     public void OnPartyToggleChange()
@@ -28,14 +34,33 @@ public class SettingsMenu : MonoBehaviour
         PartyMode = PartyToggle.isOn;
     }
 
-    public void ChangeSceme(int dir)
+    public void ChangeScheme(int dir)
     {
-        
+        ColorSceme += dir;   
+        if (ColorSceme == -1) ColorSceme += ColorLibrary.NumberOfSchemes();
+        if (ColorSceme == ColorLibrary.NumberOfSchemes()) ColorSceme = 0;
+        SetSceme(colors.GetColorScheme(ColorSceme));
     }
-    
+
+    private void SetSceme(Sprite[] spriteList)
+    {
+        int i = 0;
+        foreach (Image image in DisplayBricks.GetComponentsInChildren<Image>())
+        {
+            print(i);
+            print(spriteList);
+            image.sprite = spriteList[i];
+            i++;
+        }
+    }
+
     public void ChangeToMainMenu()
     {
         // Save in Player Prefs
+        PlayerPrefs.SetInt("Scheme", ColorSceme);
+        PlayerPrefs.SetInt("PartyMode", PartyMode ? 1 : 0);
+        PlayerPrefs.SetFloat("Sound", SoundValue);
+        SceneManager.LoadScene(0);
     }
     
     public void OnSoundChange()
