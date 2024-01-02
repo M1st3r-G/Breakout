@@ -5,19 +5,22 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     private string ColorSchemeKey = "ColorScheme";
-    private string SoundValueKey = "Sound";
+    private string EffectVolumeKey = "EffectVolume";
+    private string MusicVolumeKey = "MusicVolume";
     private string PartyModeKey = "PartyMode";
     
     //ComponentReferences
     [SerializeField] private Toggle PartyToggle;
-    [SerializeField] private Slider SoundSlider;
+    [SerializeField] private Slider MusicVolumeSlider;
+    [SerializeField] private Slider EffectVolumeSlider;
     [SerializeField] private GameObject DisplayBricks;
     [SerializeField] private ColorLibrary colors;
     //Params
     //Temps
     private Image[] bricks;
     private bool PartyMode;
-    private float SoundValue;
+    private float MusicVolume;
+    private float EffectVolume;
     private int ColorScheme;
     //Publics
      
@@ -25,10 +28,13 @@ public class SettingsMenu : MonoBehaviour
     {
         PartyMode = PlayerPrefs.GetInt(PartyModeKey, 0) == 1;
         PartyToggle.isOn = PartyMode;
-        SoundValue = PlayerPrefs.GetFloat(SoundValueKey, 0.75f);
-        SoundSlider.value = SoundValue;
+        
+        MusicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, 0.75f);
+        EffectVolume = PlayerPrefs.GetFloat(EffectVolumeKey, 0.75f);
+        MusicVolumeSlider.value = MusicVolume;
+        EffectVolumeSlider.value = EffectVolume;
+        
         ColorScheme = PlayerPrefs.GetInt(ColorSchemeKey, 0);
-        print(ColorScheme);
         SetSceme(colors.GetColorScheme(ColorScheme));
     }
 
@@ -60,12 +66,18 @@ public class SettingsMenu : MonoBehaviour
         // Save in Player Prefs
         PlayerPrefs.SetInt(ColorSchemeKey, ColorScheme);
         PlayerPrefs.SetInt(PartyModeKey, PartyMode ? 1 : 0);
-        PlayerPrefs.SetFloat(SoundValueKey, SoundValue);
+        PlayerPrefs.SetFloat(MusicVolumeKey, MusicVolume);
+        PlayerPrefs.SetFloat(EffectVolumeKey, EffectVolume);
         SceneManager.LoadScene(0);
     }
     
-    public void OnSoundChange()
+    public void OnMusicVolumeChange()
     {
-        SoundValue = SoundSlider.value;
+        MusicVolume = MusicVolumeSlider.value;
+    }
+    
+    public void OnEffectVolumeChange()
+    {
+        EffectVolume = EffectVolumeSlider.value;
     }
 }
