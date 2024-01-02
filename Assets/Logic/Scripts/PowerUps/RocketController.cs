@@ -40,7 +40,7 @@ public class RocketController : MonoBehaviour
         }
         
         thruster = particleThruster.emission;
-        
+        GameManager.Instance.PlayAudioEffect(5);
         SetTarget();
     }
 
@@ -80,6 +80,7 @@ public class RocketController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         particleThruster.transform.SetParent(null, true);
+        GameManager.Instance.PlayAudioEffect(6);
         Destroy(particleThruster.gameObject, particleThruster.main.startLifetime.constant);
         Destroy(gameObject);
     }

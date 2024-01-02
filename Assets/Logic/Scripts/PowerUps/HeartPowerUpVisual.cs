@@ -26,8 +26,9 @@ public class HeartPowerUpVisual : MonoBehaviour
         transform.position = Vector3.Lerp(start, target, counter/timeToReach);
         if (counter < timeToReach) return;
             Tail.transform.SetParent(null, true);
+            GameManager.Instance.CurLife++;
+            GameManager.Instance.PlayAudioEffect(7);
             Destroy(Tail.gameObject, Tail.main.startLifetime.constant);
             Destroy(gameObject);
-            GameManager.Instance.CurLife++;
     }
 }

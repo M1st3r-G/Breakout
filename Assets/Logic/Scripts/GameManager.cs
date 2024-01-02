@@ -194,13 +194,7 @@ public class GameManager : MonoBehaviour
     public void PlayAudioEffect(int index)
     {
         if(0 <= index && index < clips.Length) effectAudioSource.PlayOneShot(clips[index]);
-    }
-
-    public void PlayBrickHitEffect(int amount)
-    {
-        effectAudioSource.pitch = 1 + amount * 2f;
-        effectAudioSource.PlayOneShot(clips[0]);
-        effectAudioSource.pitch = 1;
+        else print("SoundIndexError");
     }
     
     private void SpawnRocket()
