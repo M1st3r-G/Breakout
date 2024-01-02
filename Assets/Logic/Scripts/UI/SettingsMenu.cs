@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
+    private string ColorSchemeKey = "ColorScheme";
+    private string SoundValueKey = "Sound";
+    private string PartyModeKey = "PartyMode";
+    
     //ComponentReferences
     [SerializeField] private Toggle PartyToggle;
     [SerializeField] private Slider SoundSlider;
@@ -19,13 +23,13 @@ public class SettingsMenu : MonoBehaviour
      
     private void Awake()
     {
-        PartyMode = PlayerPrefs.GetInt("PartyMode", 0) == 1;
+        PartyMode = PlayerPrefs.GetInt(PartyModeKey, 0) == 1;
         PartyToggle.isOn = PartyMode;
-        SoundValue = PlayerPrefs.GetFloat("Sound", 0.75f);
+        SoundValue = PlayerPrefs.GetFloat(SoundValueKey, 0.75f);
         SoundSlider.value = SoundValue;
-        ColorScheme = PlayerPrefs.GetInt("ColorScheme", 0);
+        ColorScheme = PlayerPrefs.GetInt(ColorSchemeKey, 0);
+        print(ColorScheme);
         SetSceme(colors.GetColorScheme(ColorScheme));
-        // TODO ERROR
     }
 
     public void OnPartyToggleChange()
@@ -54,9 +58,9 @@ public class SettingsMenu : MonoBehaviour
     public void ChangeToMainMenu()
     {
         // Save in Player Prefs
-        PlayerPrefs.SetInt("Scheme", ColorScheme);
-        PlayerPrefs.SetInt("PartyMode", PartyMode ? 1 : 0);
-        PlayerPrefs.SetFloat("Sound", SoundValue);
+        PlayerPrefs.SetInt(ColorSchemeKey, ColorScheme);
+        PlayerPrefs.SetInt(PartyModeKey, PartyMode ? 1 : 0);
+        PlayerPrefs.SetFloat(SoundValueKey, SoundValue);
         SceneManager.LoadScene(0);
     }
     

@@ -17,5 +17,6 @@ public class ColorLibrary : ScriptableObject
         };
     }
 
-    public static int NumberOfSchemes() => 4;
+    public static int NumberOfSchemes() => 3;
+    // Crucial that this is Right
 }
