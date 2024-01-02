@@ -659,8 +659,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PartyToggle: {fileID: 1015436944}
-  MusicVolumeSlider: {fileID: 0}
-  EffectVolumeSlider: {fileID: 0}
+  MusicVolumeSlider: {fileID: 465513801}
+  EffectVolumeSlider: {fileID: 1627792753}
   DisplayBricks: {fileID: 674835105}
   colors: {fileID: 11400000, guid: 5faab3ccce3565d43a1790270b42c984, type: 2}
 --- !u!1 &446429641

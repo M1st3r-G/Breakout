@@ -148,8 +148,14 @@ public class GameManager : MonoBehaviour
 
         if (allBalls.Count != 0) return;
         CurLife--;
-        if (CurLife == 0) OnGameOver?.Invoke();
+        if (CurLife == 0) TriggerGameOver();
         else AddBall(true);
+    }
+
+    private void TriggerGameOver()
+    {
+        PlayAudioEffect(8);
+        OnGameOver?.Invoke();
     }
 
     private void AddPoints(BrickController hitBrick)
