@@ -12,7 +12,6 @@ public class SettingsMenu : MonoBehaviour
     //Params
     //Temps
     private Image[] bricks;
-
     private bool PartyMode;
     private float SoundValue;
     private int ColorScheme;
