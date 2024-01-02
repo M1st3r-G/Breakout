@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    private string ColorSchemeKey = "ColorScheme";
-    private string EffectVolumeKey = "EffectVolume";
-    private string MusicVolumeKey = "MusicVolume";
-    private string PartyModeKey = "PartyMode";
+    public static readonly string ColorSchemeKey = "ColorScheme";
+    public static readonly string EffectVolumeKey = "EffectVolume";
+    public static readonly string MusicVolumeKey = "MusicVolume";
+    public static readonly string PartyModeKey = "PartyMode";
     
     //ComponentReferences
     [SerializeField] private Toggle PartyToggle;

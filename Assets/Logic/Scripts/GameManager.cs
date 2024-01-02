@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
@@ -50,7 +49,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int maxLife = 3;
     [SerializeField, Range(0f,1f)] private float percent;
     private bool PartyMode;
-    private float SoundValue;
+    private float MusicVolume;
+    private float EffectVolume;
     public Sprite[] ColorScheme { get; private set; }
     
     //Publics
@@ -76,13 +76,14 @@ public class GameManager : MonoBehaviour
         allBalls = new List<BallController>();
         
         // Import Settings
-        PartyMode = PlayerPrefs.GetInt("PartyMode", 0) == 1;
-        SoundValue = PlayerPrefs.GetFloat("Sound", 0.75f);
-        int colorSchemeIndex = PlayerPrefs.GetInt("ColorScheme", 0);
+        PartyMode = PlayerPrefs.GetInt(SettingsMenu.PartyModeKey, 0) == 1;
+        MusicVolume = PlayerPrefs.GetFloat(SettingsMenu.MusicVolumeKey, 0.75f);
+        EffectVolume = PlayerPrefs.GetFloat(SettingsMenu.EffectVolumeKey, 0.75f);
+        int colorSchemeIndex = PlayerPrefs.GetInt(SettingsMenu.ColorSchemeKey, 0);
 
         if (PartyMode) percent = 1f;
-        effectAudioSource.volume = SoundValue;
-        musicAudioSource.volume = SoundValue;
+        effectAudioSource.volume = EffectVolume;
+        musicAudioSource.volume = MusicVolume;
         ColorScheme = colorLibrary.GetColorScheme(colorSchemeIndex);
     }
 
@@ -138,7 +139,7 @@ public class GameManager : MonoBehaviour
         AddBall(true);
 
         musicAudioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
-        musicAudioSource.volume = SoundValue;
+        musicAudioSource.volume = MusicVolume;
     }
 
     private void RemoveLife(BallController pBall)
