@@ -155,5 +155,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 239231eb8d199a7468869d6ea282f52d, type: 3}
   - {fileID: 8300000, guid: c20e62805e60a534cb36c0c4272dc3f2, type: 3}
   - {fileID: 8300000, guid: 2e8922a346f2b514a9c2ba73e2045098, type: 3}
+  colorLibrary: {fileID: 11400000, guid: 5faab3ccce3565d43a1790270b42c984, type: 2}
   maxLife: 3
   percent: 0.2

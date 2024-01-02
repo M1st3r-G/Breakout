@@ -7,7 +7,7 @@ public class BrickController : MonoBehaviour
     //InnerComponent
     private SpriteRenderer sprite;
     //OuterParams
-    [SerializeField] private Sprite[] sprites;
+    private Sprite[] sprites;
     [SerializeField, Range(1,5)] private int strength = 1;
     //Publics
     public delegate void OnHitDelegate(BrickController brickHit);
@@ -16,6 +16,7 @@ public class BrickController : MonoBehaviour
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        sprites = GameManager.Instance.ColorScheme;
         sprite.sprite = sprites[strength-1];
     }
 

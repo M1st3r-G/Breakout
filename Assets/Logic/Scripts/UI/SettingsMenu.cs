@@ -15,7 +15,7 @@ public class SettingsMenu : MonoBehaviour
 
     private bool PartyMode;
     private float SoundValue;
-    private int ColorSceme;
+    private int ColorScheme;
     //Publics
      
     private void Awake()
@@ -24,9 +24,9 @@ public class SettingsMenu : MonoBehaviour
         PartyToggle.isOn = PartyMode;
         SoundValue = PlayerPrefs.GetFloat("Sound", 0.75f);
         SoundSlider.value = SoundValue;
-        ColorSceme = PlayerPrefs.GetInt("ColorScheme", 0);
-        ColorSceme = 0;
-        SetSceme(colors.GetColorScheme(ColorSceme));
+        ColorScheme = PlayerPrefs.GetInt("ColorScheme", 0);
+        SetSceme(colors.GetColorScheme(ColorScheme));
+        // TODO ERROR
     }
 
     public void OnPartyToggleChange()
@@ -36,10 +36,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void ChangeScheme(int dir)
     {
-        ColorSceme += dir;   
-        if (ColorSceme == -1) ColorSceme += ColorLibrary.NumberOfSchemes();
-        if (ColorSceme == ColorLibrary.NumberOfSchemes()) ColorSceme = 0;
-        SetSceme(colors.GetColorScheme(ColorSceme));
+        ColorScheme += dir;   
+        if (ColorScheme == -1) ColorScheme += ColorLibrary.NumberOfSchemes();
+        if (ColorScheme == ColorLibrary.NumberOfSchemes()) ColorScheme = 0;
+        SetSceme(colors.GetColorScheme(ColorScheme));
     }
 
     private void SetSceme(Sprite[] spriteList)
@@ -55,7 +55,7 @@ public class SettingsMenu : MonoBehaviour
     public void ChangeToMainMenu()
     {
         // Save in Player Prefs
-        PlayerPrefs.SetInt("Scheme", ColorSceme);
+        PlayerPrefs.SetInt("Scheme", ColorScheme);
         PlayerPrefs.SetInt("PartyMode", PartyMode ? 1 : 0);
         PlayerPrefs.SetFloat("Sound", SoundValue);
         SceneManager.LoadScene(0);
