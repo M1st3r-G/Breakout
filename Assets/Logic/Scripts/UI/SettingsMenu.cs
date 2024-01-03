@@ -28,7 +28,6 @@ public class SettingsMenu : MonoBehaviour
         SoundValue = PlayerPrefs.GetFloat(SoundValueKey, 0.75f);
         SoundSlider.value = SoundValue;
         ColorScheme = PlayerPrefs.GetInt(ColorSchemeKey, 0);
-        print(ColorScheme);
         SetSceme(colors.GetColorScheme(ColorScheme));
     }
 
