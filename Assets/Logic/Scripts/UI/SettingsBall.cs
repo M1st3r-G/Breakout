@@ -3,24 +3,28 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class SettingsBall : MonoBehaviour
 {
     //Components
     [SerializeField] private Vector3 target;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     // Params
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
     // Temps
     private bool firstCollision;
     private bool canStart;
+    
     private Vector3 startPosition;
 
     private void Awake()
     {
-        firstCollision = true;
-        canStart = true;
+        firstCollision = canStart = true;
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefs.GetFloat(SettingsMenu.EffectVolumeKey, 0.75f);
         startPosition = transform.position;
     }
 
@@ -34,11 +38,14 @@ public class SettingsBall : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (firstCollision)
+        audioSource.Play();
+        if (!firstCollision)
         {
-            firstCollision = false;
-            return; 
+            rb.velocity = Vector2.zero;
+            Invoke(nameof(LoadNextScene), audioSource.clip.length);
         }
-        SceneManager.LoadScene(2); // Level1
+        first = false;
     }
+    
+    private void LoadNextScene() => SceneManager.LoadScene(2); // Level1
 }

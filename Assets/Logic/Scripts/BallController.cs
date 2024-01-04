@@ -50,16 +50,16 @@ public class BallController : MonoBehaviour
         {
             case "Player":
                 if (collision.collider.transform.position.y > transform.position.y) return;
-                GameManager.Instance.PlayAudioEffect(4);
+                AudioManager.Instance.PlayAudioEffect(AudioManager.HitPlatform);
                 rb.velocity = GetVectorByDisplacement(collision.collider.transform, 0.1f);
                 break;
             case "Wall":
-                GameManager.Instance.PlayAudioEffect(1);
+                AudioManager.Instance.PlayAudioEffect(AudioManager.HitWall);
                 break;
             case "Brick":
                 // If no BrickController -> Unbreakable
                 bool unbreakable = collision.collider.gameObject.GetComponent<BrickController>() is null;
-                GameManager.Instance.PlayAudioEffect(unbreakable? 2: 0);
+                AudioManager.Instance.PlayAudioEffect(unbreakable? AudioManager.HitIndestructible: AudioManager.HitDefault);
                 break;
         }
     }

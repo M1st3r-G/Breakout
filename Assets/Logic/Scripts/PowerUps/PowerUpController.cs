@@ -20,7 +20,7 @@ public class PowerUpController : MonoBehaviour
     {
         Destroy(gameObject);
         if (!collision.gameObject.CompareTag("Player")) return;
-        GameManager.Instance.PlayAudioEffect(3);
+        AudioManager.Instance.PlayAudioEffect(AudioManager.PowerUpCollect);
         OnPowerUp?.Invoke(type);
     }
 }
