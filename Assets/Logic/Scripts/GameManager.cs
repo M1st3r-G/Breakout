@@ -6,7 +6,6 @@ using UnityEngine;
 using TMPro;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(AudioSource))]
 public class GameManager : MonoBehaviour
 {
     //ComponentReferences
@@ -14,10 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject heart;
     [SerializeField] private GameObject[] powerUps;
-    [SerializeField] private AudioClip[] clips;
     [SerializeField] private ColorLibrary colorLibrary;
-    private AudioSource effectAudioSource;
-    private AudioSource musicAudioSource;
     private TextMeshProUGUI pointsText, lifeText;
     private PlayerController player; 
     //Temps
@@ -34,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private int curPoints;
 
-    public int CurPoints
+    private int CurPoints
     {
         get => curPoints;
         set
@@ -48,10 +44,8 @@ public class GameManager : MonoBehaviour
     //Params
     [SerializeField] private int maxLife = 3;
     [SerializeField, Range(0f,1f)] private float percent;
-    private bool PartyMode;
-    private float MusicVolume;
-    private float EffectVolume;
     public Sprite[] ColorScheme { get; private set; }
+    private bool partyMode;
     
     //Publics
     private static GameManager _instance;
@@ -71,19 +65,13 @@ public class GameManager : MonoBehaviour
         
         // instantiate Variables
         CurLife = maxLife;
-        effectAudioSource = GetComponent<AudioSource>();
-        musicAudioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
         allBalls = new List<BallController>();
         
         // Import Settings
-        PartyMode = PlayerPrefs.GetInt(SettingsMenu.PartyModeKey, 0) == 1;
-        MusicVolume = PlayerPrefs.GetFloat(SettingsMenu.MusicVolumeKey, 0.75f);
-        EffectVolume = PlayerPrefs.GetFloat(SettingsMenu.EffectVolumeKey, 0.75f);
+        partyMode = PlayerPrefs.GetInt(SettingsMenu.PartyModeKey, 0) == 1;
         int colorSchemeIndex = PlayerPrefs.GetInt(SettingsMenu.ColorSchemeKey, 0);
 
-        if (PartyMode) percent = 1f;
-        effectAudioSource.volume = EffectVolume;
-        musicAudioSource.volume = MusicVolume;
+        if (partyMode) percent = 1f;
         ColorScheme = colorLibrary.GetColorScheme(colorSchemeIndex);
 
         Cursor.visible = false;
@@ -135,7 +123,7 @@ public class GameManager : MonoBehaviour
         allBricks = new List<BrickController>();
         foreach (GameObject brickObject in GameObject.FindGameObjectsWithTag("Brick"))
         {
-            //Exclude Bricks without BrickController = Indestructable
+            //Exclude Bricks without BrickController = Indestructible
             BrickController tmp = brickObject.GetComponent<BrickController>();
             if(tmp is not null) allBricks.Add(tmp);
         }
@@ -146,10 +134,7 @@ public class GameManager : MonoBehaviour
         lifeText.text = CurLife.ToString();
         
         allBalls = new List<BallController>();
-        AddBall(true);
-
-        musicAudioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
-        musicAudioSource.volume = MusicVolume;
+        AddBall(true); 
     }
 
     private void RemoveLife(BallController pBall)
@@ -165,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     private void TriggerGameOver()
     {
-        PlayAudioEffect(8);
+        AudioManager.Instance.PlayAudioEffect(8);
         OnGameOver?.Invoke();
     }
 
@@ -208,11 +193,7 @@ public class GameManager : MonoBehaviour
             hitBrick.transform.position, Quaternion.identity);
     }
 
-    public void PlayAudioEffect(int index)
-    {
-        if(0 <= index && index < clips.Length) effectAudioSource.PlayOneShot(clips[index]);
-        else print("SoundIndexError");
-    }
+    
     
     private void SpawnRocket()
     {
