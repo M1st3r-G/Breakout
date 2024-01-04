@@ -26,7 +26,7 @@ public class HeartPowerUpVisual : MonoBehaviour
         if (counter < timeToReach) return;
             Tail.transform.SetParent(null, true);
             GameManager.Instance.CurLife++;
-            AudioManager.Instance.PlayAudioEffect(7);
+            AudioManager.Instance.PlayAudioEffect(AudioManager.PowerUpHeartCollect);
             Destroy(Tail.gameObject, Tail.main.startLifetime.constant);
             Destroy(gameObject);
     }

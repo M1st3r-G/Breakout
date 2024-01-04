@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
 
     private void TriggerGameOver()
     {
-        AudioManager.Instance.PlayAudioEffect(8);
+        AudioManager.Instance.PlayAudioEffect(AudioManager.GameOver);
         OnGameOver?.Invoke();
     }
 

@@ -13,6 +13,19 @@ public class AudioManager : MonoBehaviour
     private float effectVolume;
     //Temps
     //Publics
+    public static readonly int HitDefault = 0;
+    public static readonly int HitWall = 1;
+    public static readonly int HitIndestructible = 2;
+    public static readonly int HitPlatform = 3;
+
+    public static readonly int PowerUpCollect = 4;
+    public static readonly int PowerUpHeartCollect = 5;
+    public static readonly int PowerUpRocketStart = 6;
+    public static readonly int PowerUpRocketExplode = 7;
+    
+    public static readonly int GameOver = 8;
+    
+    
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;
      
@@ -52,9 +65,5 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.volume = musicVolume;
     }
     
-    public void PlayAudioEffect(int index)
-    {
-        if(0 <= index && index < clips.Length) effectAudioSource.PlayOneShot(clips[index]);
-        else print("SoundIndexError");
-    }
+    public void PlayAudioEffect(int index) => effectAudioSource.PlayOneShot(clips[index]);
 }
