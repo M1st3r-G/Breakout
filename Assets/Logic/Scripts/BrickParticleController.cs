@@ -1,20 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class ParticleController : MonoBehaviour
+public class BrickParticleController : MonoBehaviour
 {
     //ComponentReferences
     private ParticleSystem particles;
     //Params
     //Temps
     //Publics
-    private static ParticleController _instance;
-    public static ParticleController Instance => _instance;
+    private static BrickParticleController _instance;
+    public static BrickParticleController Instance => _instance;
     
     private void Awake()
     {
-        if (_instance is not null)
+        if (_instance is not null || SceneManager.GetActiveScene().buildIndex == 0)
         {
+            
             Destroy(gameObject);
             return;
         }
