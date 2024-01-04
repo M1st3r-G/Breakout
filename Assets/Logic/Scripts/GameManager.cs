@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     
     public static event Action OnGameOver;
-
+    
     private void Awake()
     {
         if (_instance is not null)

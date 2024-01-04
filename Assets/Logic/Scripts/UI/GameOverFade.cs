@@ -1,14 +1,14 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class GameOverFade : MonoBehaviour
 {
-    //InnerComponentReference
+    //ComponentReference
     private CanvasGroup group;
     //Params
-    [SerializeField] private float timeInSeconds;
+    [SerializeField] private float fadeInTime;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class GameOverFade : MonoBehaviour
         group.interactable = true;
         while (group.alpha < 1)
         {
-            group.alpha += Time.unscaledDeltaTime / timeInSeconds;
+            group.alpha += Time.unscaledDeltaTime / fadeInTime;
             yield return null;
         }
     }

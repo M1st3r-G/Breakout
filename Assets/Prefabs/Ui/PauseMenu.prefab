@@ -144,11 +144,11 @@ GameObject:
   - component: {fileID: 7842390533664353122}
   - component: {fileID: 5308955083665604823}
   - component: {fileID: 794914744991572909}
-  - component: {fileID: 5136990720990799432}
   - component: {fileID: 273307286136667423}
   - component: {fileID: 4050528973308823621}
+  - component: {fileID: 996405935674098438}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,19 +217,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5136990720990799432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3191656940581535535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a46b6038c7745684394665c31505b9f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeInTime: 1
 --- !u!225 &273307286136667423
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -254,6 +241,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a46a16e0f84cb4874d43ec5a9173ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &996405935674098438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191656940581535535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48841232f032c1048acb8e7b8da16781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseAction: {fileID: -2390552376619832404, guid: aa74f2749951a944c90edfa9f0f7763b, type: 3}
+  fadeInTime: 1
 --- !u!1 &3274056486469782316
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +401,7 @@ GameObject:
   - component: {fileID: 2985902828211117962}
   - component: {fileID: 5785089430743619014}
   m_Layer: 5
-  m_Name: GameOverText
+  m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,9 +454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You lost
-
-'
+  m_text: Pause
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc9ca78e39202114d9e7c01f49c278c3, type: 2}
   m_sharedMaterial: {fileID: 8571098296046515382, guid: fc9ca78e39202114d9e7c01f49c278c3, type: 2}
@@ -464,8 +463,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280025292
-  m_fontColor: {r: 0.8, g: 0, b: 0.11031874, a: 1}
+    rgba: 4291559452
+  m_fontColor: {r: 0.10980392, g: 0, b: 0.8, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -820,7 +819,7 @@ GameObject:
   - component: {fileID: 1855238440384356473}
   - component: {fileID: 2163711962688342029}
   m_Layer: 5
-  m_Name: GameOverText (1)
+  m_Name: SubText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -873,7 +872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: But you could try again...
+  m_text: Warning Progress will not be saved
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 284c760b431231847bb064cfe1db25d6, type: 2}
   m_sharedMaterial: {fileID: 976156286982586704, guid: 284c760b431231847bb064cfe1db25d6, type: 2}
@@ -882,8 +881,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190268
-  m_fontColor: {r: 0.7372549, g: 0, b: 0, a: 1}
+    rgba: 4290510848
+  m_fontColor: {r: 0, g: 0, b: 0.7372549, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -900,7 +899,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 251.35
+  m_fontSize: 169.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
