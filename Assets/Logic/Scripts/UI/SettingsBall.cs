@@ -2,11 +2,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class SettingsBall : MonoBehaviour
 {
     //Components
     [SerializeField] private Vector3 target;
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     // Params
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
@@ -19,6 +21,8 @@ public class SettingsBall : MonoBehaviour
     {
         first = canMove = true;
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.volume = PlayerPrefs.GetFloat(SettingsMenu.EffectVolumeKey, 0.75f);
         startPosition = transform.position;
     }
 
@@ -32,7 +36,14 @@ public class SettingsBall : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!first) SceneManager.LoadScene(2); // Level1
+        audioSource.Play();
+        if (!first)
+        {
+            rb.velocity = Vector2.zero;
+            Invoke(nameof(LoadNextScene), audioSource.clip.length);
+        }
         first = false;
     }
+    
+    private void LoadNextScene() => SceneManager.LoadScene(2); // Level1
 }
