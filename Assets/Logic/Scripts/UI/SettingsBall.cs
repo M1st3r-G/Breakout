@@ -44,7 +44,7 @@ public class SettingsBall : MonoBehaviour
             rb.velocity = Vector2.zero;
             Invoke(nameof(LoadNextScene), audioSource.clip.length);
         }
-        first = false;
+        firstCollision = false;
     }
     
     private void LoadNextScene() => SceneManager.LoadScene(2); // Level1
