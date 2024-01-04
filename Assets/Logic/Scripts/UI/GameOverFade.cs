@@ -27,21 +27,19 @@ public class GameOverFade : MonoBehaviour
 
     private void OnGameOver()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         StartCoroutine(FadeIn());
     }
-
-    public void ExitGame() => Application.Quit();
-    public void MainMenu() => SceneManager.LoadScene(0);
     
     private IEnumerator FadeIn()
     {
+        Time.timeScale = 0f;
         group.interactable = true;
         while (group.alpha < 1)
         {
-            group.alpha += Time.deltaTime / timeInSeconds;
+            group.alpha += Time.unscaledDeltaTime / timeInSeconds;
             yield return null;
         }
-
-        Time.timeScale = 0f;
     }
 }

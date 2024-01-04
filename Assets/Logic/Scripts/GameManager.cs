@@ -85,6 +85,9 @@ public class GameManager : MonoBehaviour
         effectAudioSource.volume = EffectVolume;
         musicAudioSource.volume = MusicVolume;
         ColorScheme = colorLibrary.GetColorScheme(colorSchemeIndex);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public List<BrickController> GetActiveBricks()
@@ -117,6 +120,13 @@ public class GameManager : MonoBehaviour
         {
             _instance = null;
             Destroy(gameObject);
+            return;
+        }
+
+        if (scene.buildIndex == SceneManager.sceneCount - 1)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             return;
         }
 
