@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private float fadeInTime;
     //Temps
     private bool isPaused;
+    private bool gameOver;
     private Coroutine currentTransfer;
     
     private void Awake()
@@ -22,16 +23,28 @@ public class PauseMenu : MonoBehaviour
     
     private void OnEnable()
     {
+        pauseAction.action.Enable();
         pauseAction.action.performed += OnPause;
+        GameManager.OnGameOver += OnGameOver;
     }
-    
+
     private void OnDisable()
     {        
         pauseAction.action.performed -= OnPause;
+        pauseAction.action.Disable();
+        GameManager.OnGameOver -= OnGameOver;
     }
 
+    private void OnGameOver()
+    {
+        gameOver = true;
+        if (currentTransfer is not null) StopCoroutine(currentTransfer);
+        currentTransfer = StartCoroutine(FadeTo(false));
+    }
+    
     private void OnPause(InputAction.CallbackContext ctx)
     {
+        if (gameOver) return;
         if (currentTransfer is not null) StopCoroutine(currentTransfer);
         currentTransfer = StartCoroutine(FadeTo(!isPaused));
     }
