@@ -144,11 +144,11 @@ GameObject:
   - component: {fileID: 7842390533664353122}
   - component: {fileID: 5308955083665604823}
   - component: {fileID: 794914744991572909}
-  - component: {fileID: 5136990720990799432}
   - component: {fileID: 273307286136667423}
   - component: {fileID: 4050528973308823621}
+  - component: {fileID: 996405935674098438}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,19 +217,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5136990720990799432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3191656940581535535}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a46b6038c7745684394665c31505b9f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeInSeconds: 1
 --- !u!225 &273307286136667423
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -238,7 +225,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3191656940581535535}
   m_Enabled: 1
-  m_Alpha: 0.18
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -252,6 +239,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a46a16e0f84cb4874d43ec5a9173ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &996405935674098438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191656940581535535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48841232f032c1048acb8e7b8da16781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3274056486469782316
