@@ -121,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5136990720990799432}
-        m_TargetAssemblyTypeName: GameOverFade, Assembly-CSharp
-        m_MethodName: ExitGame
+      - m_Target: {fileID: 4050528973308823621}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 794914744991572909}
   - component: {fileID: 5136990720990799432}
   - component: {fileID: 273307286136667423}
+  - component: {fileID: 4050528973308823621}
   m_Layer: 5
   m_Name: GameOver
   m_TagString: Untagged
@@ -241,6 +242,18 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &4050528973308823621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3191656940581535535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a46a16e0f84cb4874d43ec5a9173ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3274056486469782316
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,7 +955,7 @@ GameObject:
   - component: {fileID: 3835493792680982821}
   - component: {fileID: 2156386714178252210}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1050,9 +1063,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5136990720990799432}
-        m_TargetAssemblyTypeName: GameOverFade, Assembly-CSharp
-        m_MethodName: MainMenu
+      - m_Target: {fileID: 4050528973308823621}
+        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
+        m_MethodName: ToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

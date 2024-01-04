@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
 
         if (allBalls.Count != 0) return;
         CurLife--;
-        if (CurLife == 0) TriggerGameOver();
+        if (CurLife <= 0) TriggerGameOver();
         else AddBall(true);
     }
 
