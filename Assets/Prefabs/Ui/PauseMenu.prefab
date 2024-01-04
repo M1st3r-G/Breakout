@@ -872,7 +872,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Warning Progress will not be saved
+  m_text: Press Esc again to return to the Game. Warning Progress will not be saved
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 284c760b431231847bb064cfe1db25d6, type: 2}
   m_sharedMaterial: {fileID: 976156286982586704, guid: 284c760b431231847bb064cfe1db25d6, type: 2}
