@@ -27,8 +27,7 @@ public class GameOverFade : MonoBehaviour
 
     private void OnGameOver()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        
         StartCoroutine(FadeIn());
     }
     
@@ -36,6 +35,11 @@ public class GameOverFade : MonoBehaviour
     {
         Time.timeScale = 0f;
         group.interactable = true;
+        group.blocksRaycasts = true;
+        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
         while (group.alpha < 1)
         {
             group.alpha += Time.unscaledDeltaTime / fadeInTime;

@@ -53,8 +53,14 @@ public class PauseMenu : MonoBehaviour
     {
         float counter = 0f;
         Time.timeScale = active ? 0f : 1f;
+        
         isPaused = active;
         group.interactable = active;
+        group.blocksRaycasts = active;
+        
+        Cursor.visible = active;
+        Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Confined;
+        
         while (active ? group.alpha < 1 : group.alpha > 0)
         {
             group.alpha = Mathf.Lerp(active ? 0f : 1f, active ? 1f : 0f, counter / fadeInTime);

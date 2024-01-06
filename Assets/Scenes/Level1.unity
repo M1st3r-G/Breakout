@@ -900,10 +900,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 595121663598407303, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2167607372155904367, guid: 87784e6d90eb7ad40ac665ee7cadf012, type: 3}
       propertyPath: m_fontSize
       value: 260
