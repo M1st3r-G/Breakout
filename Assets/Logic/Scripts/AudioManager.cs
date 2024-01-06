@@ -70,6 +70,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene s, LoadSceneMode m)
     {
+        if (s.buildIndex == SceneManager.sceneCountInBuildSettings - 1 ||  s.buildIndex < 2) return;
         musicAudioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
         musicAudioSource.volume = musicVolume;
     }

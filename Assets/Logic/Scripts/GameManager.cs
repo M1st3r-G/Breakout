@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        if (scene.buildIndex == SceneManager.sceneCount - 1)
+        if (scene.buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

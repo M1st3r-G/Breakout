@@ -31,12 +31,13 @@ public class GameOverFade : MonoBehaviour
     
     private IEnumerator FadeIn()
     {
-        Time.timeScale = 0f;
         group.interactable = true;
         group.blocksRaycasts = true;
         
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        
+        Time.timeScale = 0f;
         
         while (group.alpha < 1)
         {
