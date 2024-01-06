@@ -39,7 +39,12 @@ public class PauseMenu : MonoBehaviour
     {
         gameOver = true;
         if (currentTransfer is not null) StopCoroutine(currentTransfer);
-        currentTransfer = StartCoroutine(FadeTo(false));
+
+        isPaused = false;
+        group.alpha = 0f;
+        group.interactable = false;
+        group.blocksRaycasts = false;
+        
     }
     
     private void OnPause(InputAction.CallbackContext ctx)
@@ -57,9 +62,8 @@ public class PauseMenu : MonoBehaviour
         isPaused = active;
         group.interactable = active;
         group.blocksRaycasts = active;
-        
-        Cursor.visible = active;
-        Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Confined;
+
+        GameManager.EnableCursor(active);
         
         while (active ? group.alpha < 1 : group.alpha > 0)
         {

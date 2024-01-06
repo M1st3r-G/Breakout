@@ -34,9 +34,6 @@ public class GameOverFade : MonoBehaviour
         group.interactable = true;
         group.blocksRaycasts = true;
         
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        
         Time.timeScale = 0f;
         
         while (group.alpha < 1)

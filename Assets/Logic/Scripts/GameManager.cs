@@ -74,8 +74,7 @@ public class GameManager : MonoBehaviour
         if (partyMode) percent = 1f;
         ColorScheme = colorLibrary.GetColorScheme(colorSchemeIndex);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        EnableCursor(false);
     }
 
     public List<BrickController> GetActiveBricks()
@@ -106,14 +105,14 @@ public class GameManager : MonoBehaviour
         // Destroy if in Menu
         if(scene.buildIndex == 0)
         {
+            EnableCursor(true);
             Destroy(gameObject);
             return;
         }
 
         if (scene.buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            EnableCursor(true);
             return;
         }
 
@@ -154,10 +153,18 @@ public class GameManager : MonoBehaviour
 
     private void TriggerGameOver()
     {
-        AudioManager.Instance.PlayAudioEffect(AudioManager.GameOver);
         OnGameOver?.Invoke();
+        AudioManager.Instance.PlayAudioEffect(AudioManager.GameOver);
+        EnableCursor(true);
     }
 
+    public static void EnableCursor(bool state)
+    {
+        print("Cursor is now " + (state ? "Enabled" : "Disabled"));
+        Cursor.visible = state;
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+    }
+    
     private void AddPoints(BrickController hitBrick)
     {
         CurPoints++;
