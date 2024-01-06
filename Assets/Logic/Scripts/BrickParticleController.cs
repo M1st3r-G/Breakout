@@ -37,6 +37,14 @@ public class BrickParticleController : MonoBehaviour
         BrickController.OnHit -= SpawnParticles;
     }
 
+    public void Indestructible(IndestructableBrick b)
+    {
+        transform.position = b.transform.position;
+        particleSettings.startColor = Color.white;
+        particles.textureSheetAnimation.SetSprite(0, b.GetComponent<SpriteRenderer>().sprite);
+        particles.Emit(50);
+    }
+
     private void SpawnParticles(BrickController brick)
     {
         transform.position = brick.transform.position;

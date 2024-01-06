@@ -160,7 +160,6 @@ public class GameManager : MonoBehaviour
 
     public static void EnableCursor(bool state)
     {
-        print("Cursor is now " + (state ? "Enabled" : "Disabled"));
         Cursor.visible = state;
         Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
     }
