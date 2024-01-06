@@ -27,7 +27,6 @@ public class GameOverFade : MonoBehaviour
 
     private void OnGameOver()
     {
-        
         StartCoroutine(FadeIn());
     }
     

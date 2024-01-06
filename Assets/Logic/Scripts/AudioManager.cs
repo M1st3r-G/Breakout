@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,7 +39,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
         _instance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
+        
         AudioSource[] sources = GetComponents<AudioSource>();
         effectAudioSource = sources[0];
         effectVolume = PlayerPrefs.GetFloat(SettingsMenu.EffectVolumeKey, 0.75f);
@@ -50,6 +52,11 @@ public class AudioManager : MonoBehaviour
 
         hitAudioSource = sources[1];
         hitAudioSource.volume = effectVolume;
+    }
+
+    private void OnDestroy()
+    {
+        _instance = null;
     }
 
     private void OnEnable()

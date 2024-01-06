@@ -55,11 +55,14 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
+        print("GameManager Awoke");
         if (_instance is not null)
         {
+            print("There is another"); 
             Destroy(gameObject);
             return;
-        }        
+        }
+        print("Im the only one");
         _instance = this;
         DontDestroyOnLoad(this);
         
@@ -106,7 +109,6 @@ public class GameManager : MonoBehaviour
         // Destroy if in Menu
         if(scene.buildIndex == 0)
         {
-            _instance = null;
             Destroy(gameObject);
             return;
         }
@@ -137,6 +139,11 @@ public class GameManager : MonoBehaviour
         AddBall(true); 
     }
 
+    private void OnDestroy()
+    {
+        _instance = null;
+    }
+    
     private void RemoveLife(BallController pBall)
     {
         allBalls.Remove(pBall);
