@@ -3,11 +3,11 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ColorLibrary : ScriptableObject
 {
-    [SerializeField] private Sprite[] Set1;
-    [SerializeField] private Sprite[] Set2;
-    [SerializeField] private Sprite[] Set3;
+    [SerializeField] private Color[] Set1;
+    [SerializeField] private Color[] Set2;
+    [SerializeField] private Color[] Set3;
 
-    public Sprite[] GetColorScheme(int i)
+    public Color[] GetColorScheme(int i)
     {
         return i switch
         {

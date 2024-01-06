@@ -35,7 +35,7 @@ public class SettingsMenu : MonoBehaviour
         EffectVolumeSlider.value = EffectVolume;
         
         ColorScheme = PlayerPrefs.GetInt(ColorSchemeKey, 0);
-        SetSceme(colors.GetColorScheme(ColorScheme));
+        SetScheme(colors.GetColorScheme(ColorScheme));
     }
 
     public void OnPartyToggleChange()
@@ -48,15 +48,15 @@ public class SettingsMenu : MonoBehaviour
         ColorScheme += dir;   
         if (ColorScheme == -1) ColorScheme += ColorLibrary.NumberOfSchemes();
         if (ColorScheme == ColorLibrary.NumberOfSchemes()) ColorScheme = 0;
-        SetSceme(colors.GetColorScheme(ColorScheme));
+        SetScheme(colors.GetColorScheme(ColorScheme));
     }
 
-    private void SetSceme(Sprite[] spriteList)
+    private void SetScheme(Color[] colorList)
     {
         int i = 0;
         foreach (Image image in DisplayBricks.GetComponentsInChildren<Image>())
         {
-            image.sprite = spriteList[i];
+            image.color = colorList[i];
             i++;
         }
     }

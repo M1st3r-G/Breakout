@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     //Params
     [SerializeField] private int maxLife = 3;
     [SerializeField, Range(0f,1f)] private float percent;
-    public Sprite[] ColorScheme { get; private set; }
+    public Color[] ColorScheme { get; private set; }
     private bool partyMode;
     
     //Publics

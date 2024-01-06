@@ -6,6 +6,7 @@ public class BrickParticleController : MonoBehaviour
 {
     //ComponentReferences
     private ParticleSystem particles;
+    private ParticleSystem.MainModule particleSettings;
     //Params
     //Temps
     //Publics
@@ -22,6 +23,7 @@ public class BrickParticleController : MonoBehaviour
         }
         _instance = this;
         particles = GetComponent<ParticleSystem>();
+        particleSettings =  particles.main;
         DontDestroyOnLoad(this);
     }
 
@@ -39,7 +41,8 @@ public class BrickParticleController : MonoBehaviour
     {
         transform.position = brick.transform.position;
         int brickStr = brick.GetStrength();
-        particles.textureSheetAnimation.SetSprite(0, brick.GetSpriteWithStrength(brickStr + 1));
+        particleSettings.startColor = brick.GetColorOfStrength(brickStr + 1);
+        particles.textureSheetAnimation.SetSprite(0, brick.GetComponent<SpriteRenderer>().sprite);
         int amount = 10 * (6 - brickStr);
         particles.Emit(amount);
     }
