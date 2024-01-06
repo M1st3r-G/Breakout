@@ -20,4 +20,9 @@ public class #SCRIPTNAME# : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(this);
     }
+    
+    private void OnDestroy()
+    {
+        _instance = null;
+    }
 }

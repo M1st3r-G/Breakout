@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class GameOverFade : MonoBehaviour

@@ -55,14 +55,11 @@ public class GameManager : MonoBehaviour
     
     private void Awake()
     {
-        print("GameManager Awoke");
         if (_instance is not null)
         {
-            print("There is another"); 
             Destroy(gameObject);
             return;
         }
-        print("Im the only one");
         _instance = this;
         DontDestroyOnLoad(this);
         
