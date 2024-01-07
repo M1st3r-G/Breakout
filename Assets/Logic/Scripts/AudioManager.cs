@@ -75,10 +75,15 @@ public class AudioManager : MonoBehaviour
         musicAudioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
         musicAudioSource.volume = musicVolume;
     }
+
+    public void BreakChain()
+    {
+        hitAudioSource.pitch = 1f;
+    }
     
     public void PlayAudioEffect(int index)
     {
-        if (index == HitPlatform) hitAudioSource.pitch = 1f;
+        if (index == HitPlatform) BreakChain();
         if (index == HitDefault)
         {
             hitAudioSource.PlayOneShot(clips[index]);

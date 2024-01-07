@@ -147,12 +147,13 @@ public class GameManager : MonoBehaviour
         Destroy(pBall.gameObject);
 
         if (allBalls.Count != 0) return;
+        AudioManager.Instance.BreakChain();
         CurLife--;
         if (CurLife <= 0) TriggerGameOver();
         else AddBall(true);
     }
 
-    private void TriggerGameOver()
+    private static void TriggerGameOver()
     {
         OnGameOver?.Invoke();
         AudioManager.Instance.PlayAudioEffect(AudioManager.GameOver);
