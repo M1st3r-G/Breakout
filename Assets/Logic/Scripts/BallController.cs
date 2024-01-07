@@ -33,7 +33,6 @@ public class BallController : MonoBehaviour
     private void OnDisable()
     {
         restartAction.action.performed -= OnRestart;
-        restartAction.action.Disable();
         GameManager.OnGameOver -= OnGameOver;
     }
 
