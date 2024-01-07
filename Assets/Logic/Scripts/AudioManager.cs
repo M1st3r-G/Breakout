@@ -26,6 +26,7 @@ public class AudioManager : MonoBehaviour
     public const int PowerUpRocketExplode = 7;
 
     public const int GameOver = 8;
+    public const int WinSound = 9;
     
     private static AudioManager _instance;
     public static AudioManager Instance => _instance;

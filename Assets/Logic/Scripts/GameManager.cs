@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
         if (scene.buildIndex == SceneManager.sceneCountInBuildSettings - 1)
         {
             EnableCursor(true);
+            AudioManager.Instance.PlayAudioEffect(AudioManager.WinSound);
             return;
         }
 
