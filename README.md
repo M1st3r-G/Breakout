@@ -1,4 +1,3 @@
 # Breakout
-A Simple Breakout Game in Unity, made as learning Project during my Years at School of Games in Cologne
-
-Currently: 1.3.1
+A simple Breakout Game in Unity, made as learning Project during my years at School of Games in Cologne.
+The Task was to create A simple game, and that i have done. 
